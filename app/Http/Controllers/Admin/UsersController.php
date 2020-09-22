@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Gate;
 
 class UsersController extends Controller
 {
@@ -65,6 +66,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        if (Gate::denies('edit-users')){
+            return redirect('admin.users.index');
+        }
         $roles = Role::all();
 
         return view('admin.users.edit')->with([
