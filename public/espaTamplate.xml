@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config version="2.1">
+
+    <general dryMode="true" logLevel="ERROR|WARNING|NOTICE|INFO|DEBUG">
+        <floodProtection silentPeriod="10" silenceRequired="true" expirePeriod="30"/>
+        <email fromAddress="from@picasse.com" bounceAddress="bounce@picasse.com"/>
+    </general>
+
+    <api
+        primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"
+        secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"
+        username="--username--"
+        password="--password--"
+        incomingSmsNumber="+31642500091"
+    />
+
+    <actions>
+
+        <action type="message" name="kies naam voor de actie">
+            <recipients>
+                <number value="-- mention a specific phonenumber --"/>
+                <group id="-- mention GroupID nr --"/>
+                <group id="-- mention GroupID nr --"/>
+                <location id="-- mention LocationID nr --"/>
+            </recipients>
+            <message
+                priority="DISASTER|HIGH|AVERAGE|WARNING|INFORMATION|NOT CLASSIFIED"
+                requiredReceipt="NONE|DELIVERY|READ|ACCEPTANCE"
+            >
+                <modify type="prepend">Brand alarm -</modify>
+                <voiceCall voiceMessageId="-- mention voiceMessageID --"/>
+            </message>
+        </action>
+
+        <action type="message" name="kies naam voor een nieuwe actie">
+            <recipients>
+                <number value="-- mention a specific phonenumber --"/>
+                <group id="-- mention GroupID nr --"/>
+                <group id="-- mention GroupID nr --"/>
+                <location id="-- mention LocationID nr --"/>
+            </recipients>
+            <message
+                priority="DISASTER|HIGH|AVERAGE|WARNING|INFORMATION|NOT CLASSIFIED"
+                requiredReceipt="NONE|DELIVERY|READ|ACCEPTANCE"
+            >
+                <modify type="prepend">Storing -</modify>
+                <voiceCall useTts="true|false"/>
+            </message>
+        </action>
+
+    </actions>
+
+    <!-- hereunder the ESPA part -->
+    <espa>
+        <!--0 is off, 1 is on-->
+        <enabled>0</enabled>
+
+        <general>
+            <!--what time in seconds after a message has been sent not to send a message with the same text-->
+            <option name="floodProtection">10</option>
+        </general>
+
+        <rule name="ExampleRule">
+            <match what="pager">99</match>
+            <!-- Several Timeframes per rule -->
+            <!-- "*" in daysOfWeek means all days of week-->
+            <timeframe
+                startTime="6:00"
+                endTime="22:00"
+                daysOfWeek="*"
+            >
+                <actionReference>naam voor de actie</actionReference>
+            </timeframe>
+            <!-- startTime/endTime may be ommited. Omitting both means "all day long"
+                 In the example below - from 22:00 to 06:00
+            -->
+            <timeframe
+                startTime="22:00"
+                endTime="6:00"
+                daysOfWeek="*"
+            >
+                <!-- Several Actions per Timeframe -->
+                <actionReference>naam voor de nieuwe actie</actionReference>
+            </timeframe>
+        </rule>
+
+        <receiver file="/storage/espa-sdr/etc/espa-receiver.ini">
+            <main>
+                <pidFile>/storage/espa-sdr/var/espa-receiver.pid</pidFile>
+                <sleepTime>5</sleepTime>
+                <smsCommand>/storage/bin/php -f /storage/espa-sdr/php/espa.php --</smsCommand>
+            </main>
+            <heartbeat>
+                <!--
+                How many seconds after the last heartbeat
+                to show that there is no heartbeat
+                Default: 30
+                -->
+                <timeout>30</timeout>
+                <!--
+                A file to write heartbeat status to
+                -->
+                <statusFile>/storage/espa-sdr/log/heartbeat_status</statusFile>
+                <!--
+                A file to write time between last two heartbeat to
+                -->
+                <intervalFile>/storage/espa-sdr/log/heartbeat_interval</intervalFile>
+            </heartbeat>
+            <logging>
+                <!--
+                0 - Do not Log
+                1 - Log Only Errors
+                2 - Log Operations
+                3 - Log Debug Information
+                Default: 1
+                -->
+                <verbosity>2</verbosity>
+                <!--
+                Log File name
+                Default: /storage/espa-sdr/log/espa-receiver.log
+                -->
+                <logFile>/storage/espa-sdr/log/espa-receiver.log</logFile>
+            </logging>
+
+            <communication>
+                <!--
+                Serial port to which to connect
+                Default: /dev/ttyS2
+                -->
+                <port>/dev/ttyS2</port>
+
+                <!--
+                Baud Rate
+                300, 600, 1200, 2400, 9600, 14400, 19200, 38400, 57600, 115200
+                Default: 9600
+                -->
+                <baudRate>9600</baudRate>
+
+                <!--
+                Data Bits
+                7 or 8
+                Default: 8
+                -->
+                <dataBits>8</dataBits>
+
+                <!--
+                Stop Bits
+                1 or 2
+                Default: 1
+                -->
+                <stopBits>1</stopBits>
+
+                <!--
+                Parity
+                none, even, odd
+                Default: none
+                -->
+                <parity>none</parity>
+
+            </communication>
+        </receiver>
+    </espa>
+
+    <sdr>
+        <!--0 is off, 1 is on-->
+        <enabled>0</enabled>
+        <general>
+            <!-- default sdr64 -->
+            <option name="version">sdr64</option>
+            <!-- default closed -->
+            <option name="normalPinState">closed</option>
+            <!-- Sets the time after which we can have the same pin activated again in seconds. For example if you activate a pin 2 times in 10 seconds and alertTimeout is set to 10 seconds, the timeframes for this pin will be run only once!!! Do not misstake this with alertRepeatTimeout! -->
+            <option name="alertTimeout">300</option>
+            <!-- If a pin is activated for a period longer than alertRepeatTimeout the SDR will run the timeframes for this pin again(repeat). It must be set in seconds! -->
+            <option name="alertRepeatTimeout">600</option>
+            <!-- Sets the time which takes to activate a pin after it has been 'pushed' in seconds. If this is set to 1 and you push the button for 0.5 seconds it wont run the timeframes for this pin, and no action will be executed. If you need immediate response use 0. If you use a confirmation pin you can use 0 too. This is used to prevent activating the pin if a button was pushed unintentionally. -->
+            <option name="activationTimeout">0</option>
+            <option name="fakeMode">0</option>
+        </general>
+
+        <pin number="1">
+            <!-- can be overruled by <normalState>open</normalState> -->
+            <txt>Contact 1 activated!</txt>
+
+            <!-- Several Timeframes per Message(contact) !-->
+            <timeframe
+                startTime="6:00"
+                endTime="22:00"
+                daysOfWeek="*"
+            >
+
+                <!-- Several Actions per Timeframe !-->
+                <actionReference>smsToDayShift</actionReference>
+            </timeframe>
+
+            <!-- second Timeframe -->
+            <timeframe
+                startTime="22:00"
+                endTime="6:00"
+                daysOfWeek="*"
+            >
+                <!-- second action -->
+                <actionReference>smsToNightShift</actionReference>
+            </timeframe>
+
+        </pin>
+
+    </sdr>
+
+    <!--SMS Modem Config settings default ttyS0 is COM1-->
+    <modem file="/storage/espa-sdr/etc/.gammurc">
+        <port>/dev/ttyS0</port>
+    </modem>
+
+</config>

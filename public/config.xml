@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config version="2.1">
+
+    <general>
+        <floodprotection>
+            <field silentPeriod="silentPeriode">20</field>
+            <field silenceRequired="silenceRequired">false</field>
+            <field expirePeriod="expirePeriod">30</field>
+        </floodprotection>
+        <email_general>
+            <field fromAddress="from@picasse.com"/>
+            <field bounceAddress="bounce@picasse.com"/>
+        </email_general>
+        <field drymode="True|False">false</field>
+        <field loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">INFO</field>
+    </general>
+    <field name="id">1</field>
+    <api>
+        <field primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/>
+        <field secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/>
+        <field username="username">glyno</field>
+        <field password="password">1234</field>
+        <field incomingSmsNumber="+31642500091"/>
+    </api>
+    <actions>
+        <action>
+            <field action_name="action_name">do something</field>
+            <field action_type="action_type">conference</field>
+            <recipients>
+                <field number="+3592342342"/>
+                <field locationid="location id">44</field>
+                <field locationid="location id">55</field>
+                <field contactid="contact id">33</field>
+                <field contactid="contact id">44</field>
+                <field groupid="group id">11</field>
+                <field groupid="group id">80</field>
+                <field tag="tag">43</field>
+            </recipients>
+            <message>
+                <field priority="priority">DISASTER</field>
+                <field requiredReceipt="requiredReceipt">WARNING</field>
+                <modify>
+                    <field modify_type="modifytype">lalal</field>
+                </modify>
+                <voicecall>
+                    <field voiceMessageId="voiceMessage id">22</field>
+                </voicecall>
+            </message>
+        </action>
+    </actions>
+</config>

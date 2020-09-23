@@ -1,0 +1,263 @@
+@extends('layouts.index')
+@section('content')
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <br>
+                <br>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Create New Data</div>
+                    <div class="panel-body a1">
+                        <form action="{{ url('store') }}" method="POST" enctype="multipart/form-data">
+                            {!! csrf_field() !!}
+                            <h3>General</h3>
+                            <div class="form-group">
+                                <label for="drymode">drymode</label>
+                                <select class="form-control" name="drymode">
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="loglevel">Loglevel</label>
+                                <select class="form-control" name="loglevel">
+                                    <option value="ERROR">ERROR</option>
+                                    <option value="NOTICE">NOTICE</option>
+                                    <option value="INFO">INFO</option>
+                                    <option value="DEBUG">DEBUG</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="silentPeriod">SilentPeriod</label>
+                                <input type="text" class="form-control" name="silentPeriod">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="silenceRequired">SilenceRequired</label>
+                                <select class="form-control" name="silenceRequired">
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="expirePeriod">ExpirePeriod</label>
+                                <input type="text" class="form-control" name="expirePeriod">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" name="username">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" name="password">
+                            </div>
+
+                            <h3>Actions</h3>
+                            <div class="form-group">
+                                <label for="action_type">Action type</label>
+                                <select class="form-control" name="action_type">
+                                    <option value="message">message</option>
+                                    <option value="email">email</option>
+                                    <option value="conference">conference</option>
+                                    <option value="alert">alert</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="action_name">Action name</label>
+                                <input type="text" class="form-control" name="action_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="location_id1">Location id</label>
+                                <input type="text" class="form-control" name="location_id1">
+                            </div>
+                            <div class="form-group">
+                                <label for="location_id2">Location id</label>
+                                <input type="text" class="form-control" name="location_id2">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact_id1">Contact id</label>
+                                <input type="text" class="form-control" name="contact_id1">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact_id2">Contact id</label>
+                                <input type="text" class="form-control" name="contact_id2">
+                            </div>
+                            <div class="form-group">
+                                <label for="group_id1">Group id</label>
+                                <input type="text" class="form-control" name="group_id1">
+                            </div>
+                            <div class="form-group">
+                                <label for="group_id2">Group id</label>
+                                <input type="text" class="form-control" name="group_id2">
+                            </div>
+                            <div class="form-group">
+                                <label for="tag">Tag</label>
+                                <input type="text" class="form-control" name="tag">
+                            </div>
+
+                            <h3>Message</h3>
+                            <div class="form-group">
+                                <label for="priority">Priority</label>
+                                <select class="form-control" name="priority">
+                                    <option value="NOT CLASSIFIED">NOT CLASSIFIED (0)</option>
+                                    <option value="INFORMATION">INFORMATION (1)</option>
+                                    <option value="WARNING">WARNING (2)</option>
+                                    <option value="AVERAGE">AVERAGE (3)</option>
+                                    <option value="HIGH">HIGH (4)</option>
+                                    <option value="DISASTER">DISASTER (5)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="requiredReceipt">Required receipt</label>
+                                <select class="form-control" name="requiredReceipt">
+                                    <option value="NOT CLASSIFIED">NONE</option>
+                                    <option value="INFORMATION">DELIVERY</option>
+                                    <option value="WARNING">READ</option>
+                                    <option value="AVERAGE">ACCEPTANCE</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="modify">Modify</label>
+                                <input type="text" class="form-control" name="modify">
+                            </div>
+                            <div class="form-group">
+                                <label for="modify_type">Modify Type</label>
+                                <input type="text" class="form-control" name="modify_type">
+                            </div>
+
+                            <h2>Voicecall</h2>
+                            <div class="form-group">
+                                <label for="voiceMessageId">Voicemessage Id</label>
+                                <input type="text" class="form-control" name="voiceMessageId">
+                            </div>
+                            <div class="form-group">
+                                <label for="useTts">UseTts</label>
+                                <select class="form-control" name="useTts">
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                </select>
+                            </div>
+
+                            <h3>ESPA</h3>
+                            <div class="form-group">
+                                <label for="espa_enabled">Enabled</label>
+                                <h6>0 is off, 1 is on</h6>
+                                <select class="form-control" name="espa_enabled">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+
+                            <h3>Option</h3>
+                            <div class="form-group">
+                                <label for="espa_general_floodprotection">Floodprotection</label>
+                                <input type="text" class="form-control" name="espa_general_floodprotection">
+                            </div>
+                            <div class="form-group">
+                                <label for="option_name">option name</label>
+                                <input type="text" class="form-control" name="option_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="rule_name">Rule name</label>
+                                <input type="text" class="form-control" name="rule_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="match">Match</label>
+                                <input type="text" class="form-control" name="match">
+                            </div>
+                            <div class="form-group">
+                                <label for="starttime">starttime</label>
+                                <input type="text" class="form-control" name="starttime">
+                            </div>
+                            <div class="form-group">
+                                <label for="endtime">endtime</label>
+                                <input type="text" class="form-control" name="endtime">
+                            </div>
+                            <div class="form-group">
+                                <label for="daysOfWeek">daysOfWeek</label>
+                                <input type="text" class="form-control" name="daysOfWeek">
+                            </div>
+                            <div class="form-group">
+                                <label for="actionReference">actionReference</label>
+                                <input type="text" class="form-control" name="actionReference">
+                            </div>
+                            <div class="form-group">
+                                <label for="sleeptime">sleeptime</label>
+                                <input type="text" class="form-control" name="sleeptime">
+                            </div>
+                            <div class="form-group">
+                                <label for="timeout">timeout</label>
+                                <h6>default 30</h6>
+                                <input type="text" class="form-control" name="timeout">
+                            </div>
+                            <div class="form-group">
+                                <label for="verbosity">Verbosity</label>
+                                <h6>Default: 1</h6>
+                                <select class="form-control" name="verbosity">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="1">2</option>
+                                    <option value="1">2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="port">Port</label>
+                                <h6>Default: /dev/ttyS2</h6>
+                                <input type="text" class="form-control" name="port">
+                            </div>
+                            <div class="form-group">
+                                <label for="baudRate">baudRate</label>
+                                <h6>Default: 9600</h6>
+                                <select class="form-control" name="baudRate">
+                                    <option value="300">300</option>
+                                    <option value="600">600</option>
+                                    <option value="1200">1200</option>
+                                    <option value="2400">2400</option>
+                                    <option value="9600">9600</option>
+                                    <option value="14400">14400</option>
+                                    <option value="19200">19200</option>
+                                    <option value="38400">38400</option>
+                                    <option value="57600">57600</option>
+                                    <option value="115200">115200"</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="dataBits">dataBits</label>
+                                <h6>Default: 8</h6>
+                                <select class="form-control" name="dataBits">
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="stopBits">stopBits</label>
+                                <h6>Default: 1</h6>
+                                <select class="form-control" name="stopBits">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="parity">Parity</label>
+                                <h6>Default: none</h6>
+                                <select class="form-control" name="parity">
+                                    <option value="none">none</option>
+                                    <option value="even">even</option>
+                                    <option value="odd">even</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@endsection
