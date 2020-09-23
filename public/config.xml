@@ -3,49 +3,89 @@
 
     <general>
         <floodprotection>
-            <field silentPeriod="silentPeriode">20</field>
-            <field silenceRequired="silenceRequired">false</field>
-            <field expirePeriod="expirePeriod">30</field>
+            <silentPeriod silentPeriod="silentPeriode">20</silentPeriod>
+            <silenceRequired silenceRequired="silenceRequired">false</silenceRequired>
+            <expirePeriod expirePeriod="expirePeriod">30</expirePeriod>
         </floodprotection>
         <email_general>
-            <field fromAddress="from@picasse.com"/>
-            <field bounceAddress="bounce@picasse.com"/>
+            <fromAddress fromAddress="from@picasse.com"/>
+            <bounceAddress bounceAddress="bounce@picasse.com"/>
         </email_general>
-        <field drymode="True|False">false</field>
-        <field loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">INFO</field>
+        <drymode drymode="True|False">false</drymode>
+        <loglevel loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">ERROR</loglevel>
     </general>
-    <field name="id">1</field>
+    <id name="id">1</id>
     <api>
-        <field primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/>
-        <field secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/>
-        <field username="username">glyno</field>
-        <field password="password">1234</field>
-        <field incomingSmsNumber="+31642500091"/>
+        <primaryUrl primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/>
+        <secondaryUrl secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/>
+        <username username="username">toby</username>
+        <password password="password">bob</password>
+        <incomingSmsNumber incomingSmsNumber="+31642500091"/>
     </api>
     <actions>
         <action>
-            <field action_name="action_name">do something</field>
-            <field action_type="action_type">conference</field>
+            <name action_name="action_name">toby</name>
+            <type action_type="action_type">conference</type>
             <recipients>
-                <field number="+3592342342"/>
-                <field locationid="location id">44</field>
-                <field locationid="location id">55</field>
-                <field contactid="contact id">33</field>
-                <field contactid="contact id">44</field>
-                <field groupid="group id">11</field>
-                <field groupid="group id">80</field>
-                <field tag="tag">43</field>
+                <number number="+3592342342"/>
+                <locationid locationid="location id">123</locationid>
+                <locationid locationid="location id">123</locationid>
+                <contactid contactid="contact id">33</contactid>
+                <contactid contactid="contact id">22</contactid>
+                <groupid groupid="group id">33</groupid>
+                <groupid groupid="group id">44</groupid>
+                <tag tag="tag">4</tag>
             </recipients>
             <message>
-                <field priority="priority">DISASTER</field>
-                <field requiredReceipt="requiredReceipt">WARNING</field>
+                <priority priority="priority">WARNING</priority>
+                <requiredReceipt requiredReceipt="requiredReceipt">INFORMATION</requiredReceipt>
                 <modify>
-                    <field modify_type="modifytype">lalal</field>
+                    <modify modify_type="modifytype">333</modify>
                 </modify>
                 <voicecall>
-                    <field voiceMessageId="voiceMessage id">22</field>
+                    <voiceMessageId voiceMessageId="voiceMessage id">22</voiceMessageId>
                 </voicecall>
             </message>
         </action>
     </actions>
+    <espa>
+        <enabled enabled="enabled">1</enabled>
+        <espa_general>
+            <option>
+                <option name="name">toby</option>
+            </option>
+        </espa_general>
+        <rule>
+            <rule rulename="rulename">uniqwe</rule>
+            <match what="pager">brood</match>
+            <timeframe>
+                <startTime starttime="starttime">40</startTime>
+                <endTime endtime="endtime">50</endTime>
+                <daysOfWeek daysOfWeek="daysOfWeek">6</daysOfWeek>
+                <actionReference actionReference="actionReference">5</actionReference>
+            </timeframe>
+        </rule>
+        <receiver>file=/storage/espa-sdr/etc/espa-receiver.ini
+            <main>
+                <pidFile>/storage/espa-sdr/var/espa-receiver.pid</pidFile>
+                <sleepTime sleeptime="sleeptime">6</sleepTime>
+                <smscommand>/storage/bin/php -f /storage/espa-sdr/php/espa.php--</smscommand>
+            </main>
+        </receiver>
+        <heartbreak>
+            <timeout timeout="timeout">30</timeout>
+            <statusfile>/storage/espa-sdr/log/heartbeat_status</statusfile>
+            <intervalfile>/storage/espa-sdr/log/heartbeat_interval</intervalfile>
+        </heartbreak>
+        <logging>
+            <verbosity verbosity="verbosity">1</verbosity>
+            <logfile>/storage/espa-sdr/log/espa-receiver.log</logfile>
+        </logging>
+        <communication>
+            <port port="port default:/dev/ttyS2">/dev/ttyS2</port>
+            <baudRate baudRate="baudRate default:9600">2400</baudRate>
+            <dataBits dataBits="dataBits default:8">8</dataBits>
+            <parity parity="parity default:none">none</parity>
+        </communication>
+    </espa>
 </config>
