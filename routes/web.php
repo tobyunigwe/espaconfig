@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EspaSdrXmlController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\Admin\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 Route::resource('espasdr',EspaSdrXmlController::class);
 
 //Route::resource('data',DataController::class);
@@ -39,3 +42,9 @@ Route::post('/store2', [DataController::class,'store2']);
 
 
 //Route::get('/espasdr', 'EspaSdrXmlController@create')->name('create');
+Route::prefix('admin')->middleware('can:manage-users')->name('admin.')->group(function () {
+    Route::resources([
+        '/users' => UsersController::class
+    ]);
+});
+
