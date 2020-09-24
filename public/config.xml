@@ -7,11 +7,11 @@
             <silenceRequired silenceRequired="silenceRequired">false</silenceRequired>
             <expirePeriod expirePeriod="expirePeriod">30</expirePeriod>
         </floodprotection>
-        <email_general>
+        <email>
             <fromAddress fromAddress="from@picasse.com"/>
             <bounceAddress bounceAddress="bounce@picasse.com"/>
-        </email_general>
-        <drymode drymode="True|False">false</drymode>
+        </email>
+        <drymode drymode="True|False">true</drymode>
         <loglevel loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">ERROR</loglevel>
     </general>
     <id name="id">1</id>
@@ -19,17 +19,17 @@
         <primaryUrl primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/>
         <secondaryUrl secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/>
         <username username="username">toby</username>
-        <password password="password">bob</password>
+        <password password="password">1234</password>
         <incomingSmsNumber incomingSmsNumber="+31642500091"/>
     </api>
     <actions>
         <action>
-            <name action_name="action_name">toby</name>
-            <type action_type="action_type">conference</type>
+            <name>do somthing</name>
+            <type>email</type>
             <recipients>
                 <number number="+3592342342"/>
                 <locationid locationid="location id">123</locationid>
-                <locationid locationid="location id">123</locationid>
+                <locationid locationid="location id">45</locationid>
                 <contactid contactid="contact id">33</contactid>
                 <contactid contactid="contact id">22</contactid>
                 <groupid groupid="group id">33</groupid>
@@ -50,11 +50,11 @@
     </actions>
     <espa>
         <enabled enabled="enabled">1</enabled>
-        <espa_general>
+        <general>
             <option>
                 <option name="name">toby</option>
             </option>
-        </espa_general>
+        </general>
         <rule>
             <rule rulename="rulename">uniqwe</rule>
             <match what="pager">brood</match>
@@ -65,27 +65,27 @@
                 <actionReference actionReference="actionReference">5</actionReference>
             </timeframe>
         </rule>
-        <receiver>file=/storage/espa-sdr/etc/espa-receiver.ini
+        <receiver file="file=/storage/espa-sdr/etc/espa-receiver.ini">
             <main>
                 <pidFile>/storage/espa-sdr/var/espa-receiver.pid</pidFile>
                 <sleepTime sleeptime="sleeptime">6</sleepTime>
                 <smscommand>/storage/bin/php -f /storage/espa-sdr/php/espa.php--</smscommand>
             </main>
+            <heartbreak>
+                <timeout timeout="timeout">30</timeout>
+                <statusfile>/storage/espa-sdr/log/heartbeat_status</statusfile>
+                <intervalfile>/storage/espa-sdr/log/heartbeat_interval</intervalfile>
+            </heartbreak>
+            <logging>
+                <verbosity verbosity="verbosity">1</verbosity>
+                <logfile>/storage/espa-sdr/log/espa-receiver.log</logfile>
+            </logging>
+            <communication>
+                <port port="port default:/dev/ttyS2">/dev/ttyS2</port>
+                <baudRate baudRate="baudRate default:9600">9600</baudRate>
+                <dataBits dataBits="dataBits default:8">8</dataBits>
+                <parity parity="parity default:none">even</parity>
+            </communication>
         </receiver>
-        <heartbreak>
-            <timeout timeout="timeout">30</timeout>
-            <statusfile>/storage/espa-sdr/log/heartbeat_status</statusfile>
-            <intervalfile>/storage/espa-sdr/log/heartbeat_interval</intervalfile>
-        </heartbreak>
-        <logging>
-            <verbosity verbosity="verbosity">1</verbosity>
-            <logfile>/storage/espa-sdr/log/espa-receiver.log</logfile>
-        </logging>
-        <communication>
-            <port port="port default:/dev/ttyS2">/dev/ttyS2</port>
-            <baudRate baudRate="baudRate default:9600">2400</baudRate>
-            <dataBits dataBits="dataBits default:8">8</dataBits>
-            <parity parity="parity default:none">none</parity>
-        </communication>
     </espa>
 </config>

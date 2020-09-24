@@ -248,10 +248,76 @@
                                 <select class="form-control" name="parity">
                                     <option value="none">none</option>
                                     <option value="even">even</option>
-                                    <option value="odd">even</option>
+                                    <option value="odd">odd</option>
                                 </select>
                             </div>
 
+                            <H3>SDR</H3>
+                            <div class="form-group">
+                                <label for="sdr_enabled">Enabled</label>
+                                <h6>0 is off, 1 is on</h6>
+                                <select class="form-control" name="sdr_enabled">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                </select>
+                            </div>
+
+                            <h3>Option</h3>
+
+                            <div class="form-group">
+                                <label for="sdr_option_name1">Version</label>
+                                <input type="text" class="form-control" name="sdr_option_name1">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_option_name2">normalPinState</label>
+                                <input type="text" class="form-control" name="sdr_option_name2">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_option_name3">alertTimeout</label>
+                                <input type="text" class="form-control" name="sdr_option_name3">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_option_name4">alertRepeatTimeout</label>
+                                <input type="text" class="form-control" name="sdr_option_name4">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_option_name5">ctivationTimeout</label>
+                                <input type="text" class="form-control" name="sdr_option_name5">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_option_name6">fakeMode</label>
+                                <input type="text" class="form-control" name="sdr_option_name6">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pin">Pin</label>
+                                <input type="text" class="form-control" name="pin">
+                            </div>
+                            <div class="form-group">
+                                <label for="txt">Pin</label>
+                                <input type="text" class="form-control" name="txt">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_starttime">Start time</label>
+                                <input type="text" class="form-control" name="sdr_starttime">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_endtime">End time</label>
+                                <input type="text" class="form-control" name="sdr_endtime">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_daysOfWeek">daysOfWeek</label>
+                                <input type="text" class="form-control" name="sdr_daysOfWeek">
+                            </div>
+                            <div class="form-group">
+                                <label for="sdr_actionReference">actionReference</label>
+                                <input type="text" class="form-control" name="sdr_actionReference">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sdr_port">Port</label>
+                                <input type="text" class="form-control" name="sdr_port">
+                            </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
                     </div>

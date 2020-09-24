@@ -43,7 +43,7 @@ class DataController extends Controller
         }
         foreach ($apis as $api) {
             //get all field-tags from this form
-            $fields = $api->getElementsByTagName('field');
+            $fields = $api->getElementsByTagName('username');
             //create an empty element
             $element = array('api');
             //walk through the input elements of the current form element
@@ -148,7 +148,7 @@ class DataController extends Controller
 
 
         //general_email Element and children
-        $email_general = $dom->createElement('email_general');
+        $email_general = $dom->createElement('email');
 
         $fromAddress = $dom->createElement('fromAddress');
         $fromAddressAttribute = $dom->createAttribute('fromAddress');
@@ -197,14 +197,10 @@ class DataController extends Controller
         $action = $dom->createElement('action');
 
         $action_type = $dom->createElement('type', $request['action_type']);
-        $action_typeAttribute = $dom->createAttribute('action_type');
-        $action_typeAttribute->value = 'action_type';
-        $action_type->appendChild($action_typeAttribute);
+
 
         $action_name = $dom->createElement('name', $request['action_name']);
-        $action_nameAttribute = $dom->createAttribute('action_name');
-        $action_nameAttribute->value = 'action_name';
-        $action_name->appendChild($action_nameAttribute);
+
 
         //recipients element and children
         $recipients = $dom->createElement('recipients');
@@ -298,7 +294,7 @@ class DataController extends Controller
 
 
         //Espa_general element and children
-        $espa_general = $dom->createElement('espa_general');
+        $espa_general = $dom->createElement('general');
 
         $espa_general_floodprotection= $dom->createElement('general', $request['espa_general_floodprotection']);
         $espa_general_floodprotectionAttribute = $dom->createAttribute('floodprotection');
@@ -355,7 +351,10 @@ class DataController extends Controller
 
 
         //receiver element and children
-        $receiver = $dom->createElement('receiver', "file=/storage/espa-sdr/etc/espa-receiver.ini");
+        $receiver = $dom->createElement('receiver');
+        $receiverAttribute = $dom->createAttribute('file');
+        $receiverAttribute->value = ("file=/storage/espa-sdr/etc/espa-receiver.ini");
+        $receiver->appendChild($receiverAttribute);
 
         //main element and children
         $main = $dom->createElement('main');
@@ -424,6 +423,95 @@ class DataController extends Controller
         $parityAttribute->value = ("parity default:none");
         $parity->appendChild($parityAttribute);
 
+        //Sdr element and children
+        $sdr= $dom->createElement('sdr');
+
+        $sdr_enabled = $dom->createElement('enabled', $request['sdr_enabled']);
+        $sdr_enabledAttribute = $dom->createAttribute('enabled');
+        $sdr_enabledAttribute->value = 'enabled';
+        $sdr_enabled ->appendChild($sdr_enabledAttribute);
+
+
+        //sdr_general element and children
+        $sdr_general = $dom->createElement('general');
+
+
+        $sdr_option1= $dom->createElement('option', $request['sdr_option_name1']);
+        $sdr_option1Attribute = $dom->createAttribute('name');
+        $sdr_option1Attribute->value = 'version';
+        $sdr_option1->appendChild($sdr_option1Attribute);
+
+        $sdr_option2= $dom->createElement('option', $request['sdr_option_name2']);
+        $sdr_option2Attribute = $dom->createAttribute('name');
+        $sdr_option2Attribute->value = 'normalPinState';
+        $sdr_option2->appendChild($sdr_option2Attribute);
+
+        $sdr_option3= $dom->createElement('option', $request['sdr_option_name3']);
+        $sdr_option3Attribute = $dom->createAttribute('name');
+        $sdr_option3Attribute->value = 'alertTimeout';
+        $sdr_option3->appendChild($sdr_option3Attribute);
+
+        $sdr_option4= $dom->createElement('option', $request['sdr_option_name4']);
+        $sdr_option4Attribute = $dom->createAttribute('name');
+        $sdr_option4Attribute->value = 'alertRepeatTimeout';
+        $sdr_option4->appendChild($sdr_option4Attribute);
+
+        $sdr_option5= $dom->createElement('option', $request['sdr_option_name5']);
+        $sdr_option5Attribute = $dom->createAttribute('name');
+        $sdr_option5Attribute->value = 'activationTimeout';
+        $sdr_option5->appendChild($sdr_option5Attribute);
+
+        $sdr_option6= $dom->createElement('option', $request['sdr_option_name6']);
+        $sdr_option6Attribute = $dom->createAttribute('name');
+        $sdr_option6Attribute->value = 'fakeMode';
+        $sdr_option6->appendChild($sdr_option6Attribute);
+
+
+        //pin element and children
+        $pin = $dom->createElement('pin');
+
+        $pinnumber= $dom->createElement('number', $request['pinnumber']);
+
+        // meerdere pinnumbers mogelijk
+
+        $txt= $dom->createElement('txt', $request['txt']);
+
+
+        // SDR timeframe element and children
+        $sdr_timeframe = $dom->createElement('timeframe');
+
+        $sdr_starttime= $dom->createElement('startTime', $request['sdr_starttime']);
+        $sdr_starttimeAttribute = $dom->createAttribute('starttime');
+        $sdr_starttimeAttribute->value = ('starttime');
+        $sdr_starttime->appendChild($sdr_starttimeAttribute);
+
+        $sdr_endtime= $dom->createElement('endTime', $request['sdr_endtime']);
+        $sdr_endtimeAttribute = $dom->createAttribute('endtime');
+        $sdr_endtimeAttribute->value = ('endtime');
+        $sdr_endtime->appendChild($sdr_endtimeAttribute);
+
+        $sdr_daysOfWeek= $dom->createElement('daysOfWeek', $request['sdr_daysOfWeek']);
+        $sdr_daysOfWeekAttribute = $dom->createAttribute('daysOfWeek');
+        $sdr_daysOfWeekAttribute->value = ('daysOfWeek');
+        $sdr_daysOfWeek->appendChild($sdr_daysOfWeekAttribute);
+
+        $sdr_actionReference= $dom->createElement('actionReference', $request['sdr_actionReference']);
+        $sdr_actionReferenceAttribute = $dom->createAttribute('actionReference');
+        $sdr_actionReferenceAttribute->value = ('actionReference');
+        $sdr_actionReference->appendChild($sdr_actionReferenceAttribute);
+
+        // SDR kan meerdere timeframes hebben in een pin
+        // pin kan meerdere pin hebben
+
+        // modem element and children
+        $modem= $dom->createElement('modem');
+        $modemAttribute = $dom->createAttribute('file');
+        $modemAttribute->value = ("/storage/espa-sdr/etc/.gammurc");
+        $modem->appendChild($modemAttribute);
+
+        $sdr_port= $dom->createElement('port', $request['sdr_port']);
+
+
 
 
         //append child to config element root
@@ -454,7 +542,14 @@ class DataController extends Controller
         $config->appendChild($intervalFile);
         $config->appendChild($logging);
         $config->appendChild($logFile);
-        $config->appendChild($communication);
+        $config->appendChild($sdr);
+        $config->appendChild($sdr_general);
+        $config->appendChild($pin);
+        $config->appendChild($pinnumber);
+        $config->appendChild($txt);
+        $config->appendChild($sdr_timeframe);
+        $config->appendChild($modem);
+        $config->appendChild($sdr_port);
 
 
 
@@ -551,6 +646,9 @@ class DataController extends Controller
 
         // receiver children
         $receiver->appendChild($main);
+        $receiver->appendChild($heartbreak);
+        $receiver->appendChild($logging);
+        $receiver->appendChild($communication);
 
         // main children
 
@@ -573,7 +671,32 @@ class DataController extends Controller
         $communication->appendChild($dataBits);
         $communication->appendChild($parity);
 
+        //Sdr children
+        $sdr->appendChild($sdr_enabled);
+        $sdr->appendChild($sdr_general);
+        $sdr->appendChild($pin);
 
+        // sdr_general append children
+
+        $sdr_general->appendChild($sdr_option1);
+        $sdr_general->appendChild($sdr_option2);
+        $sdr_general->appendChild($sdr_option3);
+        $sdr_general->appendChild($sdr_option4);
+        $sdr_general->appendChild($sdr_option5);
+        $sdr_general->appendChild($sdr_option6);
+
+        // pin append children
+        $pin->appendChild($pinnumber);
+        $pin->appendChild($txt);
+        $pin->appendChild($sdr_timeframe);
+
+        // sdr_timeframe append children
+        $sdr_timeframe->appendChild($sdr_starttime);
+        $sdr_timeframe->appendChild($sdr_endtime);
+        $sdr_timeframe->appendChild($sdr_daysOfWeek);
+        $sdr_timeframe->appendChild($sdr_actionReference);
+
+        $modem->appendChild($port);
 
         $dom->save('config.xml');
 
