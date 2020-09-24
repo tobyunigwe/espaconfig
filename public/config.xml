@@ -5,7 +5,7 @@
         <floodprotection>
             <silentPeriod silentPeriod="silentPeriode">20</silentPeriod>
             <silenceRequired silenceRequired="silenceRequired">false</silenceRequired>
-            <expirePeriod expirePeriod="expirePeriod">30</expirePeriod>
+            <expirePeriod expirePeriod="expirePeriod">20</expirePeriod>
         </floodprotection>
         <email>
             <fromAddress fromAddress="from@picasse.com"/>
@@ -24,12 +24,12 @@
     </api>
     <actions>
         <action>
-            <name>do somthing</name>
-            <type>email</type>
+            <name>toby</name>
+            <type>conference</type>
             <recipients>
                 <number number="+3592342342"/>
                 <locationid locationid="location id">123</locationid>
-                <locationid locationid="location id">45</locationid>
+                <locationid locationid="location id">123</locationid>
                 <contactid contactid="contact id">33</contactid>
                 <contactid contactid="contact id">22</contactid>
                 <groupid groupid="group id">33</groupid>
@@ -38,7 +38,7 @@
             </recipients>
             <message>
                 <priority priority="priority">WARNING</priority>
-                <requiredReceipt requiredReceipt="requiredReceipt">INFORMATION</requiredReceipt>
+                <requiredReceipt requiredReceipt="requiredReceipt">WARNING</requiredReceipt>
                 <modify>
                     <modify modify_type="modifytype">333</modify>
                 </modify>
@@ -81,11 +81,35 @@
                 <logfile>/storage/espa-sdr/log/espa-receiver.log</logfile>
             </logging>
             <communication>
-                <port port="port default:/dev/ttyS2">/dev/ttyS2</port>
-                <baudRate baudRate="baudRate default:9600">9600</baudRate>
+                <baudRate baudRate="baudRate default:9600">2400</baudRate>
                 <dataBits dataBits="dataBits default:8">8</dataBits>
-                <parity parity="parity default:none">even</parity>
+                <parity parity="parity default:none">odd</parity>
             </communication>
         </receiver>
     </espa>
+    <sdr>
+        <enabled enabled="enabled">1</enabled>
+        <general>
+            <option name="version">3</option>
+            <option name="normalPinState">3</option>
+            <option name="alertTimeout">dd</option>
+            <option name="alertRepeatTimeout">dfff</option>
+            <option name="activationTimeout">ffsd</option>
+            <option name="fakeMode">eeff</option>
+        </general>
+        <pin>
+            <number/>
+            <txt>3</txt>
+            <timeframe>
+                <startTime starttime="starttime">3</startTime>
+                <endTime endtime="endtime">3</endTime>
+                <daysOfWeek daysOfWeek="daysOfWeek">33</daysOfWeek>
+                <actionReference actionReference="actionReference">3</actionReference>
+            </timeframe>
+        </pin>
+    </sdr>
+    <modem file="/storage/espa-sdr/etc/.gammurc">
+        <port port="port default:/dev/ttyS2">/dev/ttyS2</port>
+    </modem>
+    <port>22</port>
 </config>

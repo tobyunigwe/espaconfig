@@ -74,7 +74,7 @@ class DataController extends Controller
     public function index()
     {
         $datas = $this->load();
-        return view('data')->with('datas', $datas);
+        return view('espasdr.data')->with('datas', $datas);
     }
 
     /**
@@ -84,7 +84,7 @@ class DataController extends Controller
      */
     public function create()
     {
-        return view('add');
+        return view('espasdr.add');
     }
 
     /**
