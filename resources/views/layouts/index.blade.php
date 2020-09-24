@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test Masiya</title>
+    <title>Espa-Sdr</title>
 
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
-	
+
 	@yield('content')
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>

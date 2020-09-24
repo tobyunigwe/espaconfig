@@ -171,27 +171,27 @@
                                 <input type="text" class="form-control" name="match">
                             </div>
                             <div class="form-group">
-                                <label for="starttime">starttime</label>
+                                <label for="starttime">Start time</label>
                                 <input type="text" class="form-control" name="starttime">
                             </div>
                             <div class="form-group">
-                                <label for="endtime">endtime</label>
+                                <label for="endtime">End time</label>
                                 <input type="text" class="form-control" name="endtime">
                             </div>
                             <div class="form-group">
-                                <label for="daysOfWeek">daysOfWeek</label>
+                                <label for="daysOfWeek">Days Of Week</label>
                                 <input type="text" class="form-control" name="daysOfWeek">
                             </div>
                             <div class="form-group">
-                                <label for="actionReference">actionReference</label>
+                                <label for="actionReference">Action reference</label>
                                 <input type="text" class="form-control" name="actionReference">
                             </div>
                             <div class="form-group">
-                                <label for="sleeptime">sleeptime</label>
+                                <label for="sleeptime">Sleeptime</label>
                                 <input type="text" class="form-control" name="sleeptime">
                             </div>
                             <div class="form-group">
-                                <label for="timeout">timeout</label>
+                                <label for="timeout">Timeout</label>
                                 <h6>default 30</h6>
                                 <input type="text" class="form-control" name="timeout">
                             </div>
@@ -211,7 +211,7 @@
                                 <input type="text" class="form-control" name="port">
                             </div>
                             <div class="form-group">
-                                <label for="baudRate">baudRate</label>
+                                <label for="baudRate">BaudRate</label>
                                 <h6>Default: 9600</h6>
                                 <select class="form-control" name="baudRate">
                                     <option value="300">300</option>
@@ -227,7 +227,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="dataBits">dataBits</label>
+                                <label for="dataBits">DataBits</label>
                                 <h6>Default: 8</h6>
                                 <select class="form-control" name="dataBits">
                                     <option value="7">7</option>
@@ -235,7 +235,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="stopBits">stopBits</label>
+                                <label for="stopBits">StopBits</label>
                                 <h6>Default: 1</h6>
                                 <select class="form-control" name="stopBits">
                                     <option value="1">1</option>
@@ -266,22 +266,24 @@
 
                             <div class="form-group">
                                 <label for="sdr_option_name1">Version</label>
+                                <h6>default sdr64</h6>
                                 <input type="text" class="form-control" name="sdr_option_name1">
                             </div>
                             <div class="form-group">
-                                <label for="sdr_option_name2">normalPinState</label>
+                                <label for="sdr_option_name2">NormalPinState</label>
+                                <h6>default closed</h6>
                                 <input type="text" class="form-control" name="sdr_option_name2">
                             </div>
                             <div class="form-group">
-                                <label for="sdr_option_name3">alertTimeout</label>
+                                <label for="sdr_option_name3">AlertTimeout</label>
                                 <input type="text" class="form-control" name="sdr_option_name3">
                             </div>
                             <div class="form-group">
-                                <label for="sdr_option_name4">alertRepeatTimeout</label>
+                                <label for="sdr_option_name4">AlertRepeatTimeout</label>
                                 <input type="text" class="form-control" name="sdr_option_name4">
                             </div>
                             <div class="form-group">
-                                <label for="sdr_option_name5">ctivationTimeout</label>
+                                <label for="sdr_option_name5">ActivationTimeout</label>
                                 <input type="text" class="form-control" name="sdr_option_name5">
                             </div>
                             <div class="form-group">
@@ -290,8 +292,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="pin">Pin</label>
-                                <input type="text" class="form-control" name="pin">
+                                <label for="pinnumber">Pin</label>
+                                <input type="text" class="form-control" name="pinnumber">
                             </div>
                             <div class="form-group">
                                 <label for="txt">Pin</label>
@@ -306,11 +308,11 @@
                                 <input type="text" class="form-control" name="sdr_endtime">
                             </div>
                             <div class="form-group">
-                                <label for="sdr_daysOfWeek">daysOfWeek</label>
+                                <label for="sdr_daysOfWeek">Days Of Week</label>
                                 <input type="text" class="form-control" name="sdr_daysOfWeek">
                             </div>
                             <div class="form-group">
-                                <label for="sdr_actionReference">actionReference</label>
+                                <label for="sdr_actionReference">Action Reference</label>
                                 <input type="text" class="form-control" name="sdr_actionReference">
                             </div>
 
