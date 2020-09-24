@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EspaSdrXmlController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\Admin\UsersController;
 
 /*
@@ -22,8 +24,27 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::resource('espasdr',EspaSdrXmlController::class);
+
+//Route::resource('data',DataController::class);
+
+Route::get('/', [DataController::class,'index']);
+
+Route::get('/add', [DataController::class,'create']);
+Route::post('/store', [DataController::class,'store']);
+Route::get('/delete/{id}', [DataController::class,'destroy']);
+Route::get('/edit/{id}', [DataController::class,'edit']);
+Route::put('/update/{id}', [DataController::class,'update']);
+
+Route::get('/add2', [DataController::class,'createadd2']);
+Route::post('/store2', [DataController::class,'store2']);
+
+
+//Route::get('/espasdr', 'EspaSdrXmlController@create')->name('create');
 Route::prefix('admin')->middleware('can:manage-users')->name('admin.')->group(function () {
     Route::resources([
         '/users' => UsersController::class
     ]);
 });
+
