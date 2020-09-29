@@ -1,16 +1,17 @@
 <?xml version="1.0"?>
 <config version="2.1">
+
     <general>
         <drymode drymode="True|False">true</drymode>
-        <loglevel loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">INFO</loglevel>
+        <loglevel loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">ERROR</loglevel>
         <floodprotection>
-            <silentPeriod>20</silentPeriod>
-            <silenceRequired>false</silenceRequired>
+            <silentPeriod/>
+            <silenceRequired>true</silenceRequired>
             <expirePeriod>30</expirePeriod>
         </floodprotection>
         <email>
-            <fromAddress/>
-            <bounceAddress/>
+            <fromAddress fromAddress="from@picasse.com"/>
+            <bounceAddress bounceAddress="bounce@picasse.com"/>
         </email>
     </general>
     <id name="id">1</id>
@@ -18,16 +19,16 @@
         <primaryUrl primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/>
         <secondaryUrl secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/>
         <username>glykortijn</username>
-        <password>bob</password>
+        <password>1234</password>
         <incomingSmsNumber incomingSmsNumber="+31642500091"/>
     </api>
     <actions>
         <action>
-            <name>do something</name>
-            <type>conference</type>
+            <name>toby</name>
+            <type>message</type>
             <recipients>
                 <number number="+3592342342"/>
-                <locationid locationid="location id">123</locationid>
+                <locationid locationid="location id">44</locationid>
                 <locationid locationid="location id">123</locationid>
                 <contactid contactid="contact id">33</contactid>
                 <contactid contactid="contact id">22</contactid>
@@ -36,20 +37,20 @@
                 <tag tag="tag">4</tag>
             </recipients>
             <message>
-                <priority>WARNING</priority>
-                <requiredReceipt>WARNING</requiredReceipt>
+                <priority>NOT CLASSIFIED</priority>
+                <requiredReceipt>NOT CLASSIFIED</requiredReceipt>
                 <modify>
-                    <modify>lalal</modify>
+                    <modify>333</modify>
                 </modify>
                 <voicecall>
                     <voiceMessageId>22</voiceMessageId>
-                    <useTts>false</useTts>
+                    <useTts>true</useTts>
                 </voicecall>
             </message>
         </action>
     </actions>
     <espa>
-        <enabled>1</enabled>
+        <enabled>0</enabled>
         <general>
             <option>
                 <option name="name">toby</option>
@@ -77,19 +78,19 @@
                 <intervalfile>/storage/espa-sdr/log/heartbeat_interval</intervalfile>
             </heartbreak>
             <logging>
-                <verbosity>1</verbosity>
+                <verbosity>0</verbosity>
                 <logfile>/storage/espa-sdr/log/espa-receiver.log</logfile>
             </logging>
             <communication>
                 <port port="port default:/dev/ttyS2">/dev/ttyS2</port>
-                <baudRate baudRate="baudRate default:9600">600</baudRate>
-                <dataBits dataBits="dataBits default:8">8</dataBits>
-                <parity parity="parity default:none">odd</parity>
+                <baudRate baudRate="baudRate default:9600">300</baudRate>
+                <dataBits dataBits="dataBits default:8">7</dataBits>
+                <parity parity="parity default:none">none</parity>
             </communication>
         </receiver>
     </espa>
     <sdr>
-        <enabled>1</enabled>
+        <enabled>0</enabled>
         <general>
             <option name="version">3</option>
             <option name="normalPinState">3</option>
