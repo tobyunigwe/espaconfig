@@ -29,7 +29,7 @@ div.col-md-8 .col-md-2{
 }
 a.active:link, a.active:visited {
     background-color: #008fcc;
-    color: white;	
+    color: white;
     text-align: center;
     vertical-align: middle;
     text-decoration: none;
@@ -52,4 +52,18 @@ small {
 }
 .a1 {
 	background-color: #99ccff;
+}
+
+.items {
+    border: 10px solid red;
+
+}
+.item {
+    display: inline-block;
+    line-height: 40px;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: center;
+    width: 200px;
+    margin-bottom: 10px;
 }

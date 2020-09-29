@@ -15,57 +15,6 @@ use phpDocumentor\Reflection\Types\Nullable;
 
 class DataController extends Controller
 {
-    /** @noinspection PhpArrayUsedOnlyForWriteInspection */
-    public function load()
-    {
-        $dom = new \DOMDocument();
-        $dom->load('config.xml');
-
-        //init
-        $array = array();
-        //get all form tags
-        $generals = $dom->getElementsByTagName('general');
-        $apis = $dom->getElementsByTagName('api');
-        foreach ($generals as $general) {
-            //get all field-tags from this form
-            $fields = $general->getElementsByTagName('field');
-            //create an empty element
-            $element = array();
-            //walk through the input elements of the current form element
-            foreach ($fields as $field) {
-                $name = $field->getAttribute('name');
-                $value = $field->nodeValue;
-                //add the data to element array
-                $element[$name] = $value;
-            }
-            //add the element to your array
-            $array[] = $element;
-        }
-        foreach ($apis as $api) {
-            //get all field-tags from this form
-            $fields = $api->getElementsByTagName('username');
-            //create an empty element
-            $element = array('api');
-            //walk through the input elements of the current form element
-            foreach ($fields as $field) {
-                $name = $field->getAttribute('name');
-                $value = $field->nodeValue;
-                //add the data to element array
-                $element[$name] = $value;
-            }
-            //add the element to your array
-            $array[] = $element;
-
-        }
-
-
-        //print it
-        $datas = $array;
-//         var_dump($datas);die;
-
-        return $datas;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -73,8 +22,15 @@ class DataController extends Controller
      */
     public function index()
     {
-        $datas = $this->load();
-        return view('espasdr.data')->with('datas', $datas);
+        $dom = new \DOMDocument();
+
+        //load the xml file
+        $dom->load('config.xml');
+
+        //load the element tag name
+        $datas = $dom->getElementsByTagName('config');
+
+        return view('espasdr.data',compact('datas'));
     }
 
     /**
@@ -99,26 +55,26 @@ class DataController extends Controller
         $dom->load('config.xml');
 
 
-        $datas = $this->load();
+        $config = $this->load();
 
-        $lastArray = end($datas);
-        $lastId = $lastArray['id'];
+//        $lastArray = ($config);
+//        $lastId = $lastArray['id'];
 
 
         //set the root element config
         $config = $dom->getElementsByTagName('config')->item(0);
 
 
-        // set the id in config
-        $id = $dom->createElement('id', $lastId + 1);
-        $idAttribute = $dom->createAttribute('name');
-        $idAttribute->value = 'id';
-        $id->appendChild($idAttribute);
+//        // set the id in config
+//        $id = $dom->createElement('id', $lastId + 1);
+//        $idAttribute = $dom->createAttribute('name');
+//        $idAttribute->value = 'id';
+//        $id->appendChild($idAttribute);
 
         //general Element and children
         $general = $dom->createElement('general');
 
-        $drymode = $dom->createElement('drymode',$request['drymode']);
+        $drymode = $dom->createElement('drymode', $request['drymode']);
         $drymodeAttribute = $dom->createAttribute('drymode');
         $drymodeAttribute->value = ("True|False");
         $drymode->appendChild($drymodeAttribute);
@@ -131,17 +87,17 @@ class DataController extends Controller
         //floodprotection Element and children
         $floodprotection = $dom->createElement('floodprotection');
 
-        $silentPeriod= $dom->createElement('silentPeriod', $request['silentPeriod']);
+        $silentPeriod = $dom->createElement('silentPeriod', $request['silentPeriod']);
 //        $silentPeriodAttribute = $dom->createAttribute('silentPeriod');
 //        $silentPeriodAttribute->value = ('silentPeriode');
 //        $silentPeriod->appendChild($silentPeriodAttribute);
 
-        $silenceRequired= $dom->createElement('silenceRequired', $request['silenceRequired']);
+        $silenceRequired = $dom->createElement('silenceRequired', $request['silenceRequired']);
 //        $silenceRequiredAttribute = $dom->createAttribute('silenceRequired');
 //        $silenceRequiredAttribute->value = ('silenceRequired');
 //        $silenceRequired->appendChild($silenceRequiredAttribute);
 
-        $expirePeriod= $dom->createElement('expirePeriod', $request['expirePeriod']);
+        $expirePeriod = $dom->createElement('expirePeriod', $request['expirePeriod']);
 //        $expirePeriodAttribute = $dom->createAttribute('expirePeriod');
 //        $expirePeriodAttribute->value = ('expirePeriod');
 //        $expirePeriod->appendChild($expirePeriodAttribute);
@@ -151,15 +107,14 @@ class DataController extends Controller
         $email_general = $dom->createElement('email');
 
         $fromAddress = $dom->createElement('fromAddress');
-//        $fromAddressAttribute = $dom->createAttribute('fromAddress');
-//        $fromAddressAttribute->value = ("from@picasse.com");
-//        $fromAddress->appendChild($fromAddressAttribute);
+        $fromAddressAttribute = $dom->createAttribute('fromAddress');
+        $fromAddressAttribute->value = ("from@picasse.com");
+        $fromAddress->appendChild($fromAddressAttribute);
 
         $bounceAddress = $dom->createElement('bounceAddress');
-//        $bounceAddressAttribute = $dom->createAttribute('bounceAddress');
-//        $bounceAddressAttribute->value = ("bounce@picasse.com");
-//        $bounceAddress->appendChild($bounceAddressAttribute);
-
+        $bounceAddressAttribute = $dom->createAttribute('bounceAddress');
+        $bounceAddressAttribute->value = ("bounce@picasse.com");
+        $bounceAddress->appendChild($bounceAddressAttribute);
 
 
         //api Element and data
@@ -215,7 +170,9 @@ class DataController extends Controller
         $locationid1Attribute->value = 'location id';
         $locationid1->appendChild($locationid1Attribute);
 
-        if (!empty($locationid2 = $dom->createElement ('locationid', $request['location_id2'])));
+        // uitproberen voor als het leeg is
+
+        if (!empty($locationid2 = $dom->createElement('locationid', $request['location_id2']))) ;
         $locationid2Attribute = $dom->createAttribute('locationid');
         $locationid2Attribute->value = 'location id';
         $locationid2->appendChild($locationid2Attribute);
@@ -296,7 +253,7 @@ class DataController extends Controller
         //Espa_general element and children
         $espa_general = $dom->createElement('general');
 
-        $espa_general_floodprotection= $dom->createElement('general', $request['espa_general_floodprotection']);
+        $espa_general_floodprotection = $dom->createElement('general', $request['espa_general_floodprotection']);
 //        $espa_general_floodprotectionAttribute = $dom->createAttribute('floodprotection');
 //        $espa_general_floodprotectionAttribute->value = 'floodprotection';
 //        $espa_general_floodprotection->appendChild($espa_general_floodprotectionAttribute);
@@ -304,7 +261,7 @@ class DataController extends Controller
         //option element and children
         $option = $dom->createElement('option');
 
-        $option_name= $dom->createElement('option', $request['option_name']);
+        $option_name = $dom->createElement('option', $request['option_name']);
         $option_nameAttribute = $dom->createAttribute('name');
         $option_nameAttribute->value = 'name';
         $option_name->appendChild($option_nameAttribute);
@@ -312,11 +269,10 @@ class DataController extends Controller
         //rule element and children
         $rule = $dom->createElement('rule');
 
-        $rule_name= $dom->createElement('name', $request['rule_name']);
+        $rule_name = $dom->createElement('name', $request['rule_name']);
 
 
-
-        $match= $dom->createElement('match', $request['match']);
+        $match = $dom->createElement('match', $request['match']);
         $matchAttribute = $dom->createAttribute('what');
         $matchAttribute->value = ('pager');
         $match->appendChild($matchAttribute);
@@ -324,28 +280,27 @@ class DataController extends Controller
         //timeframe element and children
         $timeframe = $dom->createElement('timeframe');
 
-        $starttime= $dom->createElement('startTime', $request['starttime']);
+        $starttime = $dom->createElement('startTime', $request['starttime']);
 //        $starttimeAttribute = $dom->createAttribute('starttime');
 //        $starttimeAttribute->value = ('starttime');
 //        $starttime->appendChild($starttimeAttribute);
 
-        $endtime= $dom->createElement('endTime', $request['endtime']);
+        $endtime = $dom->createElement('endTime', $request['endtime']);
 //        $endtimeAttribute = $dom->createAttribute('endtime');
 //        $endtimeAttribute->value = ('endtime');
 //        $endtime->appendChild($endtimeAttribute);
 
-        $daysOfWeek= $dom->createElement('daysOfWeek', $request['daysOfWeek']);
+        $daysOfWeek = $dom->createElement('daysOfWeek', $request['daysOfWeek']);
 //        $daysOfWeekAttribute = $dom->createAttribute('daysOfWeek');
 //        $daysOfWeekAttribute->value = ('daysOfWeek');
 //        $daysOfWeek->appendChild($daysOfWeekAttribute);
 
-        $actionReference= $dom->createElement('actionReference', $request['actionReference']);
+        $actionReference = $dom->createElement('actionReference', $request['actionReference']);
 //        $actionReferenceAttribute = $dom->createAttribute('actionReference');
 //        $actionReferenceAttribute->value = ('actionReference');
 //        $actionReference->appendChild($actionReferenceAttribute);
 
         // wellicht hier rule 2? tweede rule actie.
-
 
 
         //receiver element and children
@@ -358,71 +313,71 @@ class DataController extends Controller
         $main = $dom->createElement('main');
 
         //pidfile element
-        $pidFile= $dom->createElement('pidFile',"/storage/espa-sdr/var/espa-receiver.pid");
+        $pidFile = $dom->createElement('pidFile', "/storage/espa-sdr/var/espa-receiver.pid");
 
-        $sleeptime= $dom->createElement('sleepTime', $request['sleeptime']);
+        $sleeptime = $dom->createElement('sleepTime', $request['sleeptime']);
 //        $sleeptimeAttribute = $dom->createAttribute('sleeptime');
 //        $sleeptimeAttribute->value = ('sleeptime');
 //        $sleeptime->appendChild($sleeptimeAttribute);
 
         //smsCommand element
-        $smsCommand= $dom->createElement('smscommand',"/storage/bin/php -f /storage/espa-sdr/php/espa.php--");
+        $smsCommand = $dom->createElement('smscommand', "/storage/bin/php -f /storage/espa-sdr/php/espa.php--");
 
         //heartbreak element and children
         $heartbreak = $dom->createElement('heartbreak');
 
-        $timeout= $dom->createElement('timeout', $request['timeout']);
+        $timeout = $dom->createElement('timeout', $request['timeout']);
 //        $timeoutAttribute = $dom->createAttribute('timeout');
 //        $timeoutAttribute->value = ('timeout');
 //        $timeout->appendChild($timeoutAttribute);
 
         //statusFile element
-        $statusFile= $dom->createElement('statusfile',"/storage/espa-sdr/log/heartbeat_status");
+        $statusFile = $dom->createElement('statusfile', "/storage/espa-sdr/log/heartbeat_status");
 
         //intervalFile element
-        $intervalFile= $dom->createElement('intervalfile',"/storage/espa-sdr/log/heartbeat_interval");
+        $intervalFile = $dom->createElement('intervalfile', "/storage/espa-sdr/log/heartbeat_interval");
 
         //logging element and children
-        $logging= $dom->createElement('logging');
+        $logging = $dom->createElement('logging');
 
-        $verbosity= $dom->createElement('verbosity', $request['verbosity']);
+        $verbosity = $dom->createElement('verbosity', $request['verbosity']);
 //        $verbosityAttribute = $dom->createAttribute('verbosity');
 //        $verbosityAttribute->value = ('verbosity');
 //        $verbosity->appendChild($verbosityAttribute);
 
         //logFile element
-        $logFile= $dom->createElement('logfile',"/storage/espa-sdr/log/espa-receiver.log");
+        $logFile = $dom->createElement('logfile', "/storage/espa-sdr/log/espa-receiver.log");
 
         //communication element and children
-        $communication= $dom->createElement('communication');
+        $communication = $dom->createElement('communication');
 
-        $port= $dom->createElement('port', $request['port']);
+        $port = $dom->createElement('port', $request['port']);
         $portAttribute = $dom->createAttribute('port');
         $portAttribute->value = ("port default:/dev/ttyS2");
         $port->appendChild($portAttribute);
 
-        $baudRate= $dom->createElement('baudRate', $request['baudRate']);
+        $baudRate = $dom->createElement('baudRate', $request['baudRate']);
         $baudRateAttribute = $dom->createAttribute('baudRate');
         $baudRateAttribute->value = ("baudRate default:9600");
         $baudRate->appendChild($baudRateAttribute);
 
-        $dataBits= $dom->createElement('dataBits', $request['dataBits']);
+        $dataBits = $dom->createElement('dataBits', $request['dataBits']);
         $dataBitsAttribute = $dom->createAttribute('dataBits');
         $dataBitsAttribute->value = ("dataBits default:8");
         $dataBits->appendChild($dataBitsAttribute);
 
-        $stopBits= $dom->createElement('stopBits', $request['stopBits']);
+        $stopBits = $dom->createElement('stopBits', $request['stopBits']);
         $stopBitsAttribute = $dom->createAttribute('stopBits');
         $stopBitsAttribute->value = ("stopBits default:1");
         $stopBits->appendChild($stopBitsAttribute);
 
-        $parity= $dom->createElement('parity', $request['parity']);
+        $parity = $dom->createElement('parity', $request['parity']);
         $parityAttribute = $dom->createAttribute('parity');
         $parityAttribute->value = ("parity default:none");
         $parity->appendChild($parityAttribute);
 
         //Sdr element and children
-        $sdr= $dom->createElement('sdr');
+        $sdr = $dom->createElement('sdr');
 
         $sdr_enabled = $dom->createElement('enabled', $request['sdr_enabled']);
 //        $sdr_enabledAttribute = $dom->createAttribute('enabled');
@@ -434,32 +389,32 @@ class DataController extends Controller
         $sdr_general = $dom->createElement('general');
 
 
-        $sdr_option1= $dom->createElement('option', $request['sdr_option_name1']);
+        $sdr_option1 = $dom->createElement('option', $request['sdr_option_name1']);
         $sdr_option1Attribute = $dom->createAttribute('name');
         $sdr_option1Attribute->value = 'version';
         $sdr_option1->appendChild($sdr_option1Attribute);
 
-        $sdr_option2= $dom->createElement('option', $request['sdr_option_name2']);
+        $sdr_option2 = $dom->createElement('option', $request['sdr_option_name2']);
         $sdr_option2Attribute = $dom->createAttribute('name');
         $sdr_option2Attribute->value = 'normalPinState';
         $sdr_option2->appendChild($sdr_option2Attribute);
 
-        $sdr_option3= $dom->createElement('option', $request['sdr_option_name3']);
+        $sdr_option3 = $dom->createElement('option', $request['sdr_option_name3']);
         $sdr_option3Attribute = $dom->createAttribute('name');
         $sdr_option3Attribute->value = 'alertTimeout';
         $sdr_option3->appendChild($sdr_option3Attribute);
 
-        $sdr_option4= $dom->createElement('option', $request['sdr_option_name4']);
+        $sdr_option4 = $dom->createElement('option', $request['sdr_option_name4']);
         $sdr_option4Attribute = $dom->createAttribute('name');
         $sdr_option4Attribute->value = 'alertRepeatTimeout';
         $sdr_option4->appendChild($sdr_option4Attribute);
 
-        $sdr_option5= $dom->createElement('option', $request['sdr_option_name5']);
+        $sdr_option5 = $dom->createElement('option', $request['sdr_option_name5']);
         $sdr_option5Attribute = $dom->createAttribute('name');
         $sdr_option5Attribute->value = 'activationTimeout';
         $sdr_option5->appendChild($sdr_option5Attribute);
 
-        $sdr_option6= $dom->createElement('option', $request['sdr_option_name6']);
+        $sdr_option6 = $dom->createElement('option', $request['sdr_option_name6']);
         $sdr_option6Attribute = $dom->createAttribute('name');
         $sdr_option6Attribute->value = 'fakeMode';
         $sdr_option6->appendChild($sdr_option6Attribute);
@@ -468,32 +423,32 @@ class DataController extends Controller
         //pin element and children
         $pin = $dom->createElement('pin');
 
-        $pinnumber= $dom->createElement('number', $request['pinnumber']);
+        $pinnumber = $dom->createElement('number', $request['pinnumber']);
 
         // meerdere pinnumbers mogelijk
 
-        $txt= $dom->createElement('txt', $request['txt']);
+        $txt = $dom->createElement('txt', $request['txt']);
 
 
         // SDR timeframe element and children
         $sdr_timeframe = $dom->createElement('timeframe');
 
-        $sdr_starttime= $dom->createElement('startTime', $request['sdr_starttime']);
+        $sdr_starttime = $dom->createElement('startTime', $request['sdr_starttime']);
 //        $sdr_starttimeAttribute = $dom->createAttribute('starttime');
 //        $sdr_starttimeAttribute->value = ('starttime');
 //        $sdr_starttime->appendChild($sdr_starttimeAttribute);
 
-        $sdr_endtime= $dom->createElement('endTime', $request['sdr_endtime']);
+        $sdr_endtime = $dom->createElement('endTime', $request['sdr_endtime']);
 //        $sdr_endtimeAttribute = $dom->createAttribute('endtime');
 //        $sdr_endtimeAttribute->value = ('endtime');
 //        $sdr_endtime->appendChild($sdr_endtimeAttribute);
 
-        $sdr_daysOfWeek= $dom->createElement('daysOfWeek', $request['sdr_daysOfWeek']);
+        $sdr_daysOfWeek = $dom->createElement('daysOfWeek', $request['sdr_daysOfWeek']);
 //        $sdr_daysOfWeekAttribute = $dom->createAttribute('daysOfWeek');
 //        $sdr_daysOfWeekAttribute->value = ('daysOfWeek');
 //        $sdr_daysOfWeek->appendChild($sdr_daysOfWeekAttribute);
 
-        $sdr_actionReference= $dom->createElement('actionReference', $request['sdr_actionReference']);
+        $sdr_actionReference = $dom->createElement('actionReference', $request['sdr_actionReference']);
 //        $sdr_actionReferenceAttribute = $dom->createAttribute('actionReference');
 //        $sdr_actionReferenceAttribute->value = ('actionReference');
 //        $sdr_actionReference->appendChild($sdr_actionReferenceAttribute);
@@ -502,21 +457,19 @@ class DataController extends Controller
         // pin kan meerdere pin hebben
 
         // modem element and children
-        $modem= $dom->createElement('modem');
+        $modem = $dom->createElement('modem');
         $modemAttribute = $dom->createAttribute('file');
         $modemAttribute->value = ("/storage/espa-sdr/etc/.gammurc");
         $modem->appendChild($modemAttribute);
 
-        $sdr_port= $dom->createElement('port', $request['sdr_port']);
-
-
+        $sdr_port = $dom->createElement('port', $request['sdr_port']);
 
 
         //append child to config element root
 
         $config->appendChild($general);
-        //config id
-        $config->appendChild($id);
+//        //config id
+//        $config->appendChild($id);
         $config->appendChild($floodprotection);
         $config->appendChild($email_general);
         $config->appendChild($api);
@@ -550,14 +503,11 @@ class DataController extends Controller
         $config->appendChild($sdr_port);
 
 
-
-
         //append child to general Element
         $general->appendChild($drymode);
         $general->appendChild($loglevel);
         $general->appendChild($floodprotection);
         $general->appendChild($email_general);
-
 
 
         //flooprotection append child
@@ -612,7 +562,7 @@ class DataController extends Controller
         $voicecall->appendChild($voiceMessageId);
         $voicecall->appendChild($useTts);
 
-       //espa append children
+        //espa append children
         $espa->appendChild($espa_enabled);
         $espa->appendChild($espa_general);
         $espa->appendChild($rule);
