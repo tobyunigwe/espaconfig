@@ -47,6 +47,12 @@
                         </li>
 
                     @else
+                        @can('access-editor')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('editor') }}">{{ __('Editor') }}</a>
+                        </li>
+                        @endcan
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -59,8 +65,6 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
-
 
                                 @can('manage-users')
                                     @if (Route::has('register'))

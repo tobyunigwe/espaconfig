@@ -29,7 +29,8 @@ Route::resource('espasdr',EspaSdrXmlController::class);
 
 //Route::resource('data',DataController::class);
 
-Route::get('/', [DataController::class,'index']);
+Route::get('/', [DataController::class,'index'])->name('editor');
+//    ->middleware('can:access-editor');
 
 Route::get('/add', [DataController::class,'create']);
 Route::post('/store', [DataController::class,'store']);

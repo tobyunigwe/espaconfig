@@ -29,8 +29,9 @@ class DataController extends Controller
 
         //load the element tag name
         $datas = $dom->getElementsByTagName('config');
+        $brood = $dom->getElementsByTagName('general');
 
-        return view('espasdr.data',compact('datas'));
+        return view('espasdr.data',compact( 'datas', 'brood'));
     }
 
     /**
@@ -55,7 +56,7 @@ class DataController extends Controller
         $dom->load('config.xml');
 
 
-        $config = $this->load();
+//        $config = $this->load();
 
 //        $lastArray = ($config);
 //        $lastId = $lastArray['id'];
