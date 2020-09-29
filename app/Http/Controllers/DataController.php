@@ -55,21 +55,21 @@ class DataController extends Controller
         $dom->load('config.xml');
 
 
-        $datas = $this->load();
+        $config = $this->load();
 
-        $lastArray = ($datas);
-        $lastId = $lastArray['id'];
+//        $lastArray = ($config);
+//        $lastId = $lastArray['id'];
 
 
         //set the root element config
         $config = $dom->getElementsByTagName('config')->item(0);
 
 
-        // set the id in config
-        $id = $dom->createElement('id', $lastId + 1);
-        $idAttribute = $dom->createAttribute('name');
-        $idAttribute->value = 'id';
-        $id->appendChild($idAttribute);
+//        // set the id in config
+//        $id = $dom->createElement('id', $lastId + 1);
+//        $idAttribute = $dom->createAttribute('name');
+//        $idAttribute->value = 'id';
+//        $id->appendChild($idAttribute);
 
         //general Element and children
         $general = $dom->createElement('general');
@@ -468,8 +468,8 @@ class DataController extends Controller
         //append child to config element root
 
         $config->appendChild($general);
-        //config id
-        $config->appendChild($id);
+//        //config id
+//        $config->appendChild($id);
         $config->appendChild($floodprotection);
         $config->appendChild($email_general);
         $config->appendChild($api);
