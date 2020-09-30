@@ -29,14 +29,14 @@ Route::resource('espasdr',EspaSdrXmlController::class);
 
 //Route::resource('data',DataController::class);
 
-Route::get('/', [DataController::class,'index'])->name('editor');
+Route::get('/editor', [DataController::class,'index'])->name('editor');
 //    ->middleware('can:access-editor');
 
-Route::get('/add', [DataController::class,'create']);
-Route::post('/store', [DataController::class,'store']);
-Route::get('/delete/{id}', [DataController::class,'destroy']);
-Route::get('/edit/{id}', [DataController::class,'edit']);
-Route::put('/update/{id}', [DataController::class,'update']);
+Route::get('/editor/add', [DataController::class,'create'])->name('add');
+Route::post('/editor/store', [DataController::class,'store'])->name('store');
+Route::get('/editor/delete/{id}', [DataController::class,'destroy'])->name('destroy');
+Route::get('/editor/edit/{id}', [DataController::class,'edit'])->name('edit');
+Route::put('/editor/update/{id}', [DataController::class,'update'])->name('update');
 
 Route::get('/add2', [DataController::class,'createadd2']);
 Route::post('/store2', [DataController::class,'store2']);

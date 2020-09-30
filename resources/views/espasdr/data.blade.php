@@ -10,7 +10,7 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <label><h3>Person </h3></label>
-                            <a href="{{ url('/add') }}">
+                            <a href="{{ route('add') }}">
                                 <button type="button" class="btn btn-success">Add Data</button>
                             </a>
                         </div>
