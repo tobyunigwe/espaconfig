@@ -7,7 +7,7 @@
                 <br>
                 <br>
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Create New Data</div>
+                    <div class="panel-heading">Create a new ESPA configuration</div>
                     <div class="panel-body a1">
                         <form action="{{ url('editor/store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -81,13 +81,16 @@
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                    data-target="#collapseTwo" aria-expanded="false"
+                                                    aria-controls="collapseTwo">
                                                 <h3>Actions</h3>
                                             </button>
                                         </h2>
                                     </div>
 
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                         data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="action_type">Action type</label>
@@ -139,13 +142,16 @@
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                    data-target="#collapseThree" aria-expanded="false"
+                                                    aria-controls="collapseThree">
                                                 <h3>Message</h3>
                                             </button>
                                         </h2>
                                     </div>
 
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                         data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="priority">Priority</label>
@@ -184,13 +190,16 @@
                                 <div class="card">
                                     <div class="card-header" id="headingFour">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                    data-target="#collapseFour" aria-expanded="false"
+                                                    aria-controls="collapseFour">
                                                 <h2>Voicecall</h2>
                                             </button>
                                         </h2>
                                     </div>
 
-                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                         data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="voiceMessageId">Voicemessage Id</label>
@@ -212,13 +221,16 @@
                                 <div class="card">
                                     <div class="card-header" id="headingFive">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                    data-target="#collapseFive" aria-expanded="false"
+                                                    aria-controls="collapseFive">
                                                 <h3>ESPA</h3>
                                             </button>
                                         </h2>
                                     </div>
 
-                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                         data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="espa_enabled">Enabled</label>
@@ -230,105 +242,106 @@
                                             </div>
 
 
-                                        <!-- ESPA Options -->
-                                        <h3>Options</h3>
-                                        <div class="form-group">
-                                            <label for="espa_general_floodprotection">Floodprotection</label>
-                                            <input type="text" class="form-control" name="espa_general_floodprotection">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="option_name">option name</label>
-                                            <input type="text" class="form-control" name="option_name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="rule_name">Rule name</label>
-                                            <input type="text" class="form-control" name="rule_name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="match">Match</label>
-                                            <input type="text" class="form-control" name="match">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="starttime">Start time</label>
-                                            <input type="text" class="form-control" name="starttime">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="endtime">End time</label>
-                                            <input type="text" class="form-control" name="endtime">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="daysOfWeek">Days Of Week</label>
-                                            <input type="text" class="form-control" name="daysOfWeek">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="actionReference">Action reference</label>
-                                            <input type="text" class="form-control" name="actionReference">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="sleeptime">Sleeptime</label>
-                                            <input type="text" class="form-control" name="sleeptime">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="timeout">Timeout</label>
-                                            <h6>default 30</h6>
-                                            <input type="text" class="form-control" name="timeout">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="verbosity">Verbosity</label>
-                                            <h6>Default: 1</h6>
-                                            <select class="form-control" name="verbosity">
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">2</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="port">Port</label>
-                                            <h6>Default: /dev/ttyS2</h6>
-                                            <input type="text" class="form-control" name="port">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="baudRate">BaudRate</label>
-                                            <h6>Default: 9600</h6>
-                                            <select class="form-control" name="baudRate">
-                                                <option value="300">300</option>
-                                                <option value="600">600</option>
-                                                <option value="1200">1200</option>
-                                                <option value="2400">2400</option>
-                                                <option value="9600">9600</option>
-                                                <option value="14400">14400</option>
-                                                <option value="19200">19200</option>
-                                                <option value="38400">38400</option>
-                                                <option value="57600">57600</option>
-                                                <option value="115200">115200"</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="dataBits">DataBits</label>
-                                            <h6>Default: 8</h6>
-                                            <select class="form-control" name="dataBits">
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="stopBits">StopBits</label>
-                                            <h6>Default: 1</h6>
-                                            <select class="form-control" name="stopBits">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="parity">Parity</label>
-                                            <h6>Default: none</h6>
-                                            <select class="form-control" name="parity">
-                                                <option value="none">none</option>
-                                                <option value="even">even</option>
-                                                <option value="odd">odd</option>
-                                            </select>
-                                        </div>
+                                            <!-- ESPA Options -->
+                                            <h3>Options</h3>
+                                            <div class="form-group">
+                                                <label for="espa_general_floodprotection">Floodprotection</label>
+                                                <input type="text" class="form-control"
+                                                       name="espa_general_floodprotection">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="option_name">option name</label>
+                                                <input type="text" class="form-control" name="option_name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="rule_name">Rule name</label>
+                                                <input type="text" class="form-control" name="rule_name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="match">Match</label>
+                                                <input type="text" class="form-control" name="match">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="starttime">Start time</label>
+                                                <input type="text" class="form-control" name="starttime">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="endtime">End time</label>
+                                                <input type="text" class="form-control" name="endtime">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="daysOfWeek">Days Of Week</label>
+                                                <input type="text" class="form-control" name="daysOfWeek">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="actionReference">Action reference</label>
+                                                <input type="text" class="form-control" name="actionReference">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="sleeptime">Sleeptime</label>
+                                                <input type="text" class="form-control" name="sleeptime">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="timeout">Timeout</label>
+                                                <h6>default 30</h6>
+                                                <input type="text" class="form-control" name="timeout">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="verbosity">Verbosity</label>
+                                                <h6>Default: 1</h6>
+                                                <select class="form-control" name="verbosity">
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="1">2</option>
+                                                    <option value="1">2</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="port">Port</label>
+                                                <h6>Default: /dev/ttyS2</h6>
+                                                <input type="text" class="form-control" name="port">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="baudRate">BaudRate</label>
+                                                <h6>Default: 9600</h6>
+                                                <select class="form-control" name="baudRate">
+                                                    <option value="300">300</option>
+                                                    <option value="600">600</option>
+                                                    <option value="1200">1200</option>
+                                                    <option value="2400">2400</option>
+                                                    <option value="9600">9600</option>
+                                                    <option value="14400">14400</option>
+                                                    <option value="19200">19200</option>
+                                                    <option value="38400">38400</option>
+                                                    <option value="57600">57600</option>
+                                                    <option value="115200">115200"</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dataBits">DataBits</label>
+                                                <h6>Default: 8</h6>
+                                                <select class="form-control" name="dataBits">
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="stopBits">StopBits</label>
+                                                <h6>Default: 1</h6>
+                                                <select class="form-control" name="stopBits">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="parity">Parity</label>
+                                                <h6>Default: none</h6>
+                                                <select class="form-control" name="parity">
+                                                    <option value="none">none</option>
+                                                    <option value="even">even</option>
+                                                    <option value="odd">odd</option>
+                                                </select>
+                                            </div>
                                             <!-- /Options -->
                                         </div>
                                     </div>
@@ -339,13 +352,16 @@
                                 <div class="card">
                                     <div class="card-header" id="headingSix">
                                         <h2 class="mb-0">
-                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                    data-target="#collapseSix" aria-expanded="false"
+                                                    aria-controls="collapseSix">
                                                 <h3>SDR</h3>
                                             </button>
                                         </h2>
                                     </div>
 
-                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                                         data-parent="#accordionExample">
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="sdr_enabled">Enabled</label>
@@ -414,15 +430,15 @@
                                                 <label for="sdr_port">Port</label>
                                                 <input type="text" class="form-control" name="sdr_port">
                                             </div>
-                                            <!-- /SDR Options -->
-
                                         </div>
-                                    </div><button type="submit" class="btn btn-default">Submit</button>
+                                    </div>
                                 </div>
+                                <!-- /SDR Options -->
 
-
-
-
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
