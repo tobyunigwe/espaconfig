@@ -648,7 +648,14 @@ class DataController extends Controller
         //modem element children
         $modem->appendChild($sdr_port);
 
-        $dom->save('config-' . time() . '.xml');
+        $fileVersion = 1;
+        DO  {
+            $fileVersion++;
+            $file = 'config-v' . $fileVersion . '.xml';
+        }
+        while(file_exists($file));
+        $dom->save('config-v' . $fileVersion . '.xml');
+
         return redirect()->route('editor');
     }
 
