@@ -15,13 +15,13 @@ class CreatePinsTable extends Migration
     {
         Schema::create('pins', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('sdr_id')->nullable();
+            $table->unsignedBigInteger('sdr_id')->nullable();
             $table->integer('number')->nullable();
             $table->string('txt')->nullable();
             $table->string('normalState')->nullable();
             $table->string('email')->nullable();
             $table->integer('alertTimeout')->nullable();
-//            $table->foreign('sdr_id')->references('id')->on('sdrs')->onDelete('SET NULL');
+            $table->foreign('sdr_id')->references('id')->on('sdrs')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

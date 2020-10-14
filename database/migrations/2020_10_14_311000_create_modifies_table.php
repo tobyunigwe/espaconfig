@@ -14,11 +14,10 @@ class CreateModifiesTable extends Migration
     {
         Schema::create('modifies', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('message_id')->nullable();
+            $table->unsignedBigInteger('message_id')->nullable();
             $table->string('type')->nullable();
             $table->string('text')->nullable();
-//            $table->foreign('message_id')->references('id')->on('messages')->onDelete('SET NULL');
-
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

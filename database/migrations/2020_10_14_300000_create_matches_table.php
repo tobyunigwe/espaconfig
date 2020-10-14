@@ -15,9 +15,9 @@ class CreateMatchesTable extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('rule_id')->nullable();
+            $table->unsignedBigInteger('rule_id')->nullable();
             $table->string('what')->nullable();
-//            $table->foreign('rule_id')->references('id')->on('rules')->onDelete('SET NULL');
+            $table->foreign('rule_id')->references('id')->on('rules')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

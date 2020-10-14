@@ -14,11 +14,11 @@ class CreateActionsTable extends Migration
     public function up()
     {
         Schema::create('actions', function (Blueprint $table) {
-            $table->id();
-//            $table->unsignedBigInteger('elements_action_id')->nullable();
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger('elements_action_id')->nullable();
             $table->string('type')->nullable();
             $table->string('name')->nullable();
-//            $table->foreign('elements_action_id')->references('id')->on('elements_actions')->onDelete('SET NULL');
+            $table->foreign('elements_action_id')->references('id')->on('elements_actions')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

@@ -15,9 +15,9 @@ class CreateVoicecallsTable extends Migration
     {
         Schema::create('voicecalls', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('message_id')->nullable();
+            $table->unsignedBigInteger('message_id')->nullable();
             $table->Integer('voiceMessageId')->nullable();
-//            $table->foreign('message_id')->references('id')->on('messages')->onDelete('SET NULL');
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

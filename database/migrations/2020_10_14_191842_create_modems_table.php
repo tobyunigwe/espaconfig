@@ -15,10 +15,10 @@ class CreateModemsTable extends Migration
     {
         Schema::create('modems', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('config_id')->nullable();
+            $table->unsignedBigInteger('config_id')->nullable();
             $table->string('file')->nullable();
             $table->string('port')->nullable();
-//            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
+            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
 
             $table->timestamps();
         });

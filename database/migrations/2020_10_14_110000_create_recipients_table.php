@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfigsTable extends Migration
+class CreateRecipientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateConfigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('configs', function (Blueprint $table) {
-            $table->id();
-            $table->float('version');
+        Schema::create('recipients', function (Blueprint $table) {
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger('action_id')->nullable();
+            $table->foreign('action_id')->references('id')->on('actions')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateConfigsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('configs');
+        Schema::dropIfExists('recipients');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEspasTable extends Migration
+class CreateConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateEspasTable extends Migration
      */
     public function up()
     {
-        Schema::create('espas', function (Blueprint $table) {
-            $table->id();
-//            $table->unsignedBigInteger('config_id')->nullable();
-            $table->integer('enabled')->nullable();
-//            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
+        Schema::create('configs', function (Blueprint $table) {
+            $table->bigIncrements("id");
+            $table->float('version');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateEspasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('espas');
+        Schema::dropIfExists('configs');
     }
 }

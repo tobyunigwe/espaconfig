@@ -15,9 +15,9 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('recipient_id')->nullable();
+            $table->unsignedBigInteger('recipient_id')->nullable();
             $table->integer('location_id')->nullable();
-//            $table->foreign('recipient_id')->references('id')->on('recipients')->onDelete('SET NULL');
+            $table->foreign('recipient_id')->references('id')->on('recipients')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

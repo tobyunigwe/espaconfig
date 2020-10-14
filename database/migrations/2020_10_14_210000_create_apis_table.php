@@ -15,13 +15,13 @@ class CreateApisTable extends Migration
     {
         Schema::create('apis', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('config_id')->nullable();
+            $table->unsignedBigInteger('config_id')->nullable();
             $table->string('primaryUrl')->nullable();
             $table->string('secondaryUrl')->nullable();
             $table->string('username')->nullable();
             $table->string('password')->nullable();
             $table->string('incomingSmsNumber')->nullable();
-//            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
+            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
 
             $table->timestamps();
         });

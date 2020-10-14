@@ -14,8 +14,8 @@ class CreateConferencesTable extends Migration
     public function up()
     {
         Schema::create('conferences', function (Blueprint $table) {
-            $table->id();
-//            $table->unsignedBigInteger('action_id')->nullable();
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger('action_id')->nullable();
             $table->boolean('record')->nullable();
             $table->Integer('voiceMessageId')->nullable();
             $table->string('language')->nullable();
@@ -25,7 +25,7 @@ class CreateConferencesTable extends Migration
             $table->string('title')->nullable();
             $table->boolean('detectVoiceMail')->nullable();
             $table->Integer('callerId')->nullable();
-//            $table->foreign('action_id')->references('id')->on('actions')->onDelete('SET NULL');
+            $table->foreign('action_id')->references('id')->on('actions')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

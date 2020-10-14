@@ -15,9 +15,9 @@ class CreateReceiversTable extends Migration
     {
         Schema::create('receivers', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('espa_id')->nullable();
+            $table->unsignedBigInteger('espa_id')->nullable();
             $table->string('file')->nullable();
-//            $table->foreign('espa_id')->references('id')->on('espas')->onDelete('SET NULL');
+            $table->foreign('espa_id')->references('id')->on('espas')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

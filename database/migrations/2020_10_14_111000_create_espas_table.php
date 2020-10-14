@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateElementsActionsTable extends Migration
+class CreateEspasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateElementsActionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('elements_actions', function (Blueprint $table) {
-            $table->id();
-//            $table->unsignedBigInteger('config_id')->nullable();
-//            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
+        Schema::create('espas', function (Blueprint $table) {
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger('config_id')->nullable();
+            $table->integer('enabled')->nullable();
             $table->timestamps();
+            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateElementsActionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actions_elements');
+        Schema::dropIfExists('espas');
     }
 }

@@ -15,10 +15,10 @@ class CreateLoggingsTable extends Migration
     {
         Schema::create('loggings', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('receiver_id')->nullable();
+            $table->unsignedBigInteger('receiver_id')->nullable();
             $table->integer('verbosity')->nullable();
             $table->string('logFile')->nullable();
-//            $table->foreign('receiver_id')->references('id')->on('receivers')->onDelete('SET NULL');
+            $table->foreign('receiver_id')->references('id')->on('receivers')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

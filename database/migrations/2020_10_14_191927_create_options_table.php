@@ -14,8 +14,8 @@ class CreateOptionsTable extends Migration
     public function up()
     {
         Schema::create('options', function (Blueprint $table) {
-            $table->id();
-//            $table->unsignedBigInteger('general_id')->nullable();
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger('general_id')->nullable();
             $table->integer('floodProtection')->nullable();
             $table->string('version')->nullable();
             $table->string('normalPinState')->nullable();
@@ -23,7 +23,7 @@ class CreateOptionsTable extends Migration
             $table->integer('alertRepeatTimeout')->nullable();
             $table->integer('activationTimeout')->nullable();
             $table->integer('fakemode')->nullable();
-//            $table->foreign('general_id')->references('id')->on('generals')->onDelete('SET NULL');
+            $table->foreign('general_id')->references('id')->on('generals')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

@@ -15,11 +15,11 @@ class CreateHeartbeatsTable extends Migration
     {
         Schema::create('heartbeats', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('receiver_id')->nullable();
+            $table->unsignedBigInteger('receiver_id')->nullable();
             $table->integer('timeout')->nullable();
             $table->string('statusFile')->nullable();
             $table->string('intervalFile')->nullable();
-//            $table->foreign('receiver_id')->references('id')->on('receivers')->onDelete('SET NULL');
+            $table->foreign('receiver_id')->references('id')->on('receivers')->onDelete('SET NULL');
 
             $table->timestamps();
         });
