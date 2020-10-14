@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVoicecallsTable extends Migration
+class CreateEmailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateVoicecallsTable extends Migration
      */
     public function up()
     {
-        Schema::create('voicecalls', function (Blueprint $table) {
+        Schema::create('emails', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('message_id')->nullable();
-            $table->Integer('voiceMessageId')->nullable();
-            $table->foreign('message_id')->references('id')->on('messages')->onDelete('SET NULL');
+//            $table->unsignedBigInteger('general_id')->nullable();
+            $table->string('fromAddress')->nullable();
+            $table->string('bounceAddress')->nullable();
+//            $table->foreign('general_id')->references('id')->on('generals')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateVoicecallsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('voicecalls');
+        Schema::dropIfExists('emails');
     }
 }

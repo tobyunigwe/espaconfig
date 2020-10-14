@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreateRulesTable extends Migration
+class CreateModifiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +12,13 @@ class CreateRulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rules', function (Blueprint $table) {
+        Schema::create('modifies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('conference_id')->nullable();
-            $table->string('name')->nullable();
-            $table->foreign('espa_id')->references('id')->on('espas')->onDelete('SET NULL');
+//            $table->unsignedBigInteger('message_id')->nullable();
+            $table->string('type')->nullable();
+            $table->string('text')->nullable();
+//            $table->foreign('message_id')->references('id')->on('messages')->onDelete('SET NULL');
+
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateRulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rules');
+        Schema::dropIfExists('modifies');
     }
 }

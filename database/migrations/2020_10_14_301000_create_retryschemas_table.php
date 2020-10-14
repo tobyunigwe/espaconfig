@@ -15,10 +15,10 @@ class CreateRetryschemasTable extends Migration
     {
         Schema::create('retryschemas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('conference_id')->nullable();
+//            $table->unsignedBigInteger('conference_id')->nullable();
             $table->integer('interval')->nullable();
             $table->integer('count')->nullable();
-            $table->foreign('conference_id')->references('id')->on('conferences')->onDelete('SET NULL');
+//            $table->foreign('conference_id')->references('id')->on('conferences')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

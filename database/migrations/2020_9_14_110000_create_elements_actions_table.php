@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-class CreateModifiesTable extends Migration
+
+class CreateElementsActionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +13,10 @@ class CreateModifiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('modifies', function (Blueprint $table) {
+        Schema::create('elements_actions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('message_id')->nullable();
-            $table->string('type')->nullable();
-            $table->string('text')->nullable();
-            $table->foreign('message_id')->references('id')->on('messages')->onDelete('SET NULL');
-
+//            $table->unsignedBigInteger('config_id')->nullable();
+//            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateModifiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modifies');
+        Schema::dropIfExists('actions_elements');
     }
 }

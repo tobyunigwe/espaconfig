@@ -15,7 +15,7 @@ class CreateAlertsTable extends Migration
     {
         Schema::create('alerts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('action_id')->nullable();
+//            $table->unsignedBigInteger('action_id')->nullable();
             $table->integer('requiredPersons')->nullable();
             $table->integer('timeframe')->nullable();
             $table->integer('redundancy')->nullable();
@@ -27,7 +27,7 @@ class CreateAlertsTable extends Migration
             $table->boolean('cancelOnImpossible')->nullable();
             $table->boolean('stopOnImpossible')->nullable();
             $table->integer('retryCount')->nullable();
-            $table->foreign('action_id')->references('id')->on('actions')->onDelete('SET NULL');
+//            $table->foreign('action_id')->references('id')->on('actions')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateActionsElementsTable extends Migration
+class CreateMatchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateActionsElementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('actions_elements', function (Blueprint $table) {
+        Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('config_id')->nullable();
-            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
+//            $table->unsignedBigInteger('rule_id')->nullable();
+            $table->string('what')->nullable();
+//            $table->foreign('rule_id')->references('id')->on('rules')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateActionsElementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actions_elements');
+        Schema::dropIfExists('matches');
     }
 }

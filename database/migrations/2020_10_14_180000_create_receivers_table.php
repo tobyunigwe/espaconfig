@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModemsTable extends Migration
+class CreateReceiversTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateModemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('modems', function (Blueprint $table) {
+        Schema::create('receivers', function (Blueprint $table) {
             $table->id();
-//            $table->unsignedBigInteger('config_id')->nullable();
+//            $table->unsignedBigInteger('espa_id')->nullable();
             $table->string('file')->nullable();
-            $table->string('port')->nullable();
-//            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
-
+//            $table->foreign('espa_id')->references('id')->on('espas')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateModemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modems');
+        Schema::dropIfExists('receivers');
     }
 }

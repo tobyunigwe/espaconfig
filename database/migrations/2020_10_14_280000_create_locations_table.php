@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReceiversTable extends Migration
+class CreateLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateReceiversTable extends Migration
      */
     public function up()
     {
-        Schema::create('receivers', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('espa_id')->nullable();
-            $table->string('file')->nullable();
-            $table->foreign('espa_id')->references('id')->on('espas')->onDelete('SET NULL');
+//            $table->unsignedBigInteger('recipient_id')->nullable();
+            $table->integer('location_id')->nullable();
+//            $table->foreign('recipient_id')->references('id')->on('recipients')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateReceiversTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receivers');
+        Schema::dropIfExists('locations');
     }
 }

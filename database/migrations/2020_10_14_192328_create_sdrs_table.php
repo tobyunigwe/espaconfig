@@ -15,10 +15,9 @@ class CreateSdrsTable extends Migration
     {
         Schema::create('sdrs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('config_id')->nullable();
+//            $table->unsignedBigInteger('config_id')->nullable();
             $table->integer('enabled')->nullable();
-            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
-
+//            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

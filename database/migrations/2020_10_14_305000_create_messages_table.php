@@ -15,12 +15,12 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('action_id')->nullable();
+//            $table->unsignedBigInteger('action_id')->nullable();
             $table->string('priority')->nullable();
             $table->string('requiredReceipt')->nullable();
             $table->string('retryCount')->nullable();
             $table->string('subject')->nullable();
-            $table->foreign('action_id')->references('id')->on('actions')->onDelete('SET NULL');
+//            $table->foreign('action_id')->references('id')->on('actions')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

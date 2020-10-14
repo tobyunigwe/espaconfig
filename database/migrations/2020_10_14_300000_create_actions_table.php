@@ -15,10 +15,10 @@ class CreateActionsTable extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('actions_element_id')->nullable();
+//            $table->unsignedBigInteger('elements_action_id')->nullable();
             $table->string('type')->nullable();
             $table->string('name')->nullable();
-            $table->foreign('actions_element_id')->references('id')->on('actions_elements')->onDelete('SET NULL');
+//            $table->foreign('elements_action_id')->references('id')->on('elements_actions')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

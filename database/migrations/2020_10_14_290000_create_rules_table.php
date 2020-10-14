@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocationsTable extends Migration
+class CreateRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('rules', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('recipient_id')->nullable();
-            $table->integer('id')->nullable();
-            $table->foreign('recipient_id')->references('id')->on('recipients')->onDelete('SET NULL');
+//            $table->unsignedBigInteger('conference_id')->nullable();
+            $table->string('name')->nullable();
+//            $table->foreign('espa_id')->references('id')->on('espas')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('rules');
     }
 }

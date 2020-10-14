@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmailsTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('emails', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('general_id')->nullable();
-            $table->string('fromAddress')->nullable();
-            $table->string('bounceAddress')->nullable();
-            $table->foreign('general_id')->references('id')->on('generals')->onDelete('SET NULL');
+//            $table->unsignedBigInteger('recipient_id')->nullable();
+            $table->integer('group_id')->nullable();
+//            $table->foreign('recipient_id')->references('id')->on('recipients')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateEmailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emails');
+        Schema::dropIfExists('groups');
     }
 }

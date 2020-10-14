@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatchesTable extends Migration
+class CreateLoggingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateMatchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('matches', function (Blueprint $table) {
+        Schema::create('loggings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('rule_id')->nullable();
-            $table->string('what')->nullable();
-            $table->foreign('rule_id')->references('id')->on('rules')->onDelete('SET NULL');
+//            $table->unsignedBigInteger('receiver_id')->nullable();
+            $table->integer('verbosity')->nullable();
+            $table->string('logFile')->nullable();
+//            $table->foreign('receiver_id')->references('id')->on('receivers')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateMatchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matches');
+        Schema::dropIfExists('loggings');
     }
 }
