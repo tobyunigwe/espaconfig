@@ -20,7 +20,6 @@ class CreateTimeframesTable extends Migration
             $table->string('startTime')->nullable();
             $table->string('endTime')->nullable();
             $table->string('daysOfWeek')->nullable();
-            $table->string('actionReference')->nullable();
             $table->foreign('pin_id')->references('id')->on('pins')->onDelete('SET NULL');
             $table->foreign('rule_id')->references('id')->on('rules')->onDelete('SET NULL');
             $table->timestamps();
