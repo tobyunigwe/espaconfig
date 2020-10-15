@@ -14,15 +14,15 @@ class CreateGeneralsTable extends Migration
     public function up()
     {
         Schema::create('generals', function (Blueprint $table) {
-            $table->id();
-//            $table->unsignedBigInteger('config_id')->nullable();
-//            $table->unsignedBigInteger('espa_id')->nullable();
-//            $table->unsignedBigInteger('sdr_id')->nullable();
+            $table->bigIncrements("id");
+            $table->unsignedBigInteger('config_id')->nullable();
+            $table->unsignedBigInteger('espa_id')->nullable();
+            $table->unsignedBigInteger('sdr_id')->nullable();
             $table->boolean('dryMode')->nullable();
             $table->integer('logLevel')->nullable();
-//            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
-//            $table->foreign('espa_id')->references('id')->on('espas')->onDelete('SET NULL');
-//            $table->foreign('sdr_id')->references('id')->on('sdrs')->onDelete('SET NULL');
+            $table->foreign('config_id')->references('id')->on('configs')->onDelete('SET NULL');
+            $table->foreign('espa_id')->references('id')->on('espas')->onDelete('SET NULL');
+            $table->foreign('sdr_id')->references('id')->on('sdrs')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
