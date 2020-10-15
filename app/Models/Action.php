@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Action extends Model
 {
-    use HasFactory;
+    public function actions_element()
+    {
+        return $this->belongsTo(Actions_element::class);
+    }
+
 }
