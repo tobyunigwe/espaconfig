@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ConfigResource;
 use App\Models\Config;
+use App\Models\Espa;
 use Illuminate\Http\Request;
 
 class ConfigController extends Controller
@@ -15,11 +16,15 @@ class ConfigController extends Controller
      */
     public function index()
     {
-        //get Configs
-        $configs = Config::all();
+//        //get Configs
+//        $configs = Config::all();
+//
+//        //return collection of configs as a resource
+//        return ConfigResource::collection($configs);
 
-        //return collection of configs as a resource
-        return ConfigResource::collection($configs);
+//        $configs = Config::with(['espas']);
+//        return ConfigResource::collection($configs->paginate(50))->response();
+        return Config::with('espa')->get();
     }
 
     /**

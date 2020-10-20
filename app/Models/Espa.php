@@ -15,7 +15,7 @@ class Espa extends Model
     ];
 
     public function config(){
-        return $this->belongsTo(Config::class,'config_id');
+        return $this->belongsTo(Config::class);
     }
 
 }

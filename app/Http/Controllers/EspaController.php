@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ConfigResource;
+use App\Http\Resources\EspaResource;
 use App\Models\Config;
 use App\Models\Espa;
 use Illuminate\Http\Request;
@@ -16,12 +17,17 @@ class EspaController extends Controller
      */
     public function index()
     {
-        //get Configs
-        $espas = Espa::all();
+//        //get Configs
+//        $espas = Espa::all();
+//
+//        //return collection of configs as a resource
+//        return ConfigResource::collection($espas);
 
-        //return collection of configs as a resource
-        return ConfigResource::collection($espas);
+//        $espas = Espa::with(['config']);
+//        return EspaResource::collection($espas->paginate(50))->response();
+        return Espa::with('config')->get();
     }
+
 
     /**
      * Show the form for creating a new resource.

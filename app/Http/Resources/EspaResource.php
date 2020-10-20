@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Config;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EspaResource extends JsonResource
@@ -14,6 +15,13 @@ class EspaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+//        return parent::toArray($request);
+
+        return [
+            'id'=> $this->id,
+            'config_id'=> $this->config_id,
+            'enabled'=> $this->enabled,
+            'configs'=> ConfigResource::collection($this->whenLoaded('configs'))
+        ];
     }
 }

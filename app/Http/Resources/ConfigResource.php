@@ -14,6 +14,11 @@ class ConfigResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $espa = $this->whenloaded('espa');
+        return [
+            'id'=> $this->id,
+            'version'=> $this->version,
+            'espa'=> new EspaResource($espa)
+        ];
     }
 }

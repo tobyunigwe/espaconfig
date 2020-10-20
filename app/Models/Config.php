@@ -15,6 +15,8 @@ class Config extends Model
 
     public function espa()
     {
-        return $this->hasOne('App\Models\Espa');
+        return $this->hasone('App\Models\Espa');
     }
+
+
 }
