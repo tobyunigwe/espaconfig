@@ -21,7 +21,13 @@ class EspaResource extends JsonResource
             'id'=> $this->id,
             'config_id'=> $this->config_id,
             'enabled'=> $this->enabled,
-            'configs'=> ConfigResource::collection($this->whenLoaded('configs'))
+            'config' => $this->whenLoaded('config', function () {
+                return ConfigResource::collection($this->resource->config);
+            }),
+            'rule' => $this->whenLoaded('rule', function () {
+                return RuleResource::collection($this->resource->rule);
+            }),
         ];
+
     }
 }

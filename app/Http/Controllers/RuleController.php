@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ConfigResource;
-use App\Http\Resources\EspaResource;
-use App\Models\Config;
-use App\Models\Espa;
+use App\Http\Resources\RuleResource;
 use App\Models\Rule;
 use Illuminate\Http\Request;
 
-class EspaController extends Controller
+class RuleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,17 +15,14 @@ class EspaController extends Controller
      */
     public function index()
     {
-//        //get Configs
-//        $espas = Espa::all();
-//
-//        //return collection of configs as a resource
-//        return ConfigResource::collection($espas);
+//        $rules = Rule::with([''])->paginate(50);
+//        return RuleResource::collection($rules);
 
-        $espas = Espa::with(['rule'])->paginate(50);
-        return EspaResource::collection($espas);
-//        return Espa::with('rule')->get();
+                $rules = Rule::all();
+
+        //return collection of configs as a resource
+        return RuleResource::collection($rules);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -48,10 +42,11 @@ class EspaController extends Controller
      */
     public function store(Request $request)
     {
-        $espa = new Espa ();
-        $espa->enabled = $request->enabled;
-        if ($espa->save()) {
-            return new EspaResource($espa);
+        $rule = new Rule();
+        $rule->name = $request->name;
+
+        if ($rule->save()) {
+            return new RuleResource($rule);
         }
     }
 
@@ -64,9 +59,9 @@ class EspaController extends Controller
     public function show($id)
     {
         //get espa
-        $espa = Espa::with(['rule'])->findorfail($id);
+        $rule = Rule::findorfail($id);
         //return a single espa as a resource
-        return new EspaResource($espa);
+        return new RuleResource($rule);
     }
 
     /**
@@ -89,11 +84,12 @@ class EspaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $espa = Espa::with(['rule'])->findorfail($id);
-        $espa->enabled = $request->enabled;
-        if ($espa->save()) {
-            return new EspaResource($espa);
+        $rule = Rule::findorfail($id);
+        $rule->name = $request->name;
+        if ($rule->save()) {
+            return new RuleResource($rule);
         }
+
     }
 
     /**
@@ -105,10 +101,10 @@ class EspaController extends Controller
     public function destroy($id)
     {
         //get config
-        $espa = Espa::with(['rule'])->findorfail($id);
+        $rule = Rule::findorfail($id);
 
-        if ($espa->delete()) {
-            return new EspaResource($espa);
+        if ($rule->delete()) {
+            return new RuleResource($rule);
         }
     }
 }

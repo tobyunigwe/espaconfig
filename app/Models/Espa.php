@@ -17,5 +17,9 @@ class Espa extends Model
     public function config(){
         return $this->belongsTo(Config::class);
     }
+    public function rule()
+    {
+        return $this->hasmany('App\Models\Rule','espa_id');
+    }
 
 }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\EspaController;
+use App\Http\Controllers\RuleController;
+use App\Http\Controllers\MatchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +43,54 @@ Route::put('/config/{id}', [ConfigController::class, 'update']);
 Route::delete('/config/{id}', [ConfigController::class, 'destroy']);
 
 
-//Espa route
+// list all Espa
 Route::get('/espas', [EspaController::class, 'index']);
+
+//list a single espa
+Route::get('/espa/{id}', [EspaController::class, 'show']);
+
+// create new espa
+Route::post('/espas', [EspaController::class, 'store']);
+
+// create new espa
+Route::post('/espa{id}', [EspaController::class, 'store']);
+
+// update espa
+Route::put('/espa/{id}', [EspaController::class, 'update']);
+
+// delete a espa
+Route::delete('/espa/{id}', [EspaController::class, 'destroy']);
+
+
+//list all rules
+Route::get('/rules', [RuleController::class, 'index']);
+
+
+//list a single rule
+Route::get('/rule/{id}', [RuleController::class, 'show']);
+
+// create new rules
+Route::post('/rules', [RuleController::class, 'store']);
+
+// update rule
+Route::put('/rule/{id}', [RuleController::class, 'update']);
+
+// delete a rule
+Route::delete('/rule/{id}', [RuleController::class, 'destroy']);
+
+//list all Matches
+Route::get('/matches', [MatchController::class, 'index']);
+
+//list a single Match
+Route::get('/match/{id}', [MatchController::class, 'show']);
+
+// create new Matches
+Route::post('/matches', [MatchController::class, 'store']);
+
+// update a Match
+Route::put('/match/{id}', [MatchController::class, 'update']);
+
+// delete a Match
+Route::delete('/match/{id}', [MatchController::class, 'destroy']);
 
 

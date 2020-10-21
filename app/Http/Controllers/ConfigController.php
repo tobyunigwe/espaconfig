@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ConfigResource;
+use App\Http\Resources\EspaResource;
 use App\Models\Config;
 use App\Models\Espa;
 use Illuminate\Http\Request;
@@ -22,9 +23,9 @@ class ConfigController extends Controller
 //        //return collection of configs as a resource
 //        return ConfigResource::collection($configs);
 
-//        $configs = Config::with(['espas']);
-//        return ConfigResource::collection($configs->paginate(50))->response();
-        return Config::with('espa')->get();
+        $configs = Config::with(['espa.rule'])->paginate(50);
+        return ConfigResource::collection($configs);
+//        return Config::with('espa')->get();
     }
 
     /**
@@ -61,9 +62,10 @@ class ConfigController extends Controller
     public function show($id)
     {
         //get config
-        $config = Config::findorfail($id);
+        $config = Config::with(['espa.rule'])->findorfail($id);
         //return a single config as a resource
         return new ConfigResource($config);
+
     }
 
     /**

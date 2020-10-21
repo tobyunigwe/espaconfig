@@ -9,8 +9,9 @@ use Illuminate\Notifications\Notifiable;
 class Config extends Model
 {
     use HasFactory, Notifiable;
+
     protected $fillable = [
-         'version'
+        'version'
     ];
 
     public function espa()

@@ -17,6 +17,7 @@ class CreateMatchesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('rule_id')->nullable();
             $table->string('what')->nullable();
+            $table->string('text')->nullable();
             $table->foreign('rule_id')->references('id')->on('rules')->onDelete('SET NULL');
             $table->timestamps();
         });
