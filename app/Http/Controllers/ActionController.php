@@ -29,7 +29,8 @@ class ActionController extends Controller
             ->join('messages', 'messages.action_id', '=', 'actions.id')
             ->get();
 
-        return response()->jsonRpc($actions);
+        $actions->reject()->all();
+        return response()->json($actions);
     }
     /**
      * Show the form for creating a new resource.

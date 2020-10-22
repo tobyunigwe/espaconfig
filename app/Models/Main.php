@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Main extends Model
 {
+    public function receiver()
+    {
+        return $this->belongsTo(Receiver::class);
+    }
+
     use HasFactory;
 }
