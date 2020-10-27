@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActionController;
+use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\EspaController;
 use App\Http\Controllers\ReceiverController;
 use Illuminate\Http\Request;
@@ -29,3 +30,5 @@ Route::get('/espa/{id}', [EspaController::class, 'show']);
 
 Route::get('/receiver', [ReceiverController::class, 'index']);
 Route::get('/receiver/{id}', [ReceiverController::class, 'show']);
+
+Route::post('/post', [ConfigurationController::class, 'store']);

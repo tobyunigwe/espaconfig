@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Action;
+use App\Models\Configuration;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Resources\Action as ActionResource;
-use Illuminate\Support\Facades\DB;
 
-class ActionController extends Controller
+class ConfigurationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,21 +14,9 @@ class ActionController extends Controller
      */
     public function index()
     {
-        $actions = Action::paginate(15);
-
-        return ActionResource::collection($actions);
+        //
     }
 
-    public function call()
-    {
-        $actions = DB::table('actions')
-            ->join('recipients', 'recipients.action_id', '=', 'actions.id')
-            ->join('messages', 'messages.action_id', '=', 'actions.id')
-            ->get();
-
-        $actions->reject()->all();
-        return response()->json($actions);
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -50,7 +35,12 @@ class ActionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $configuration = new Configuration();
+        $configuration->json = $request->json;
+        $configuration->mac_address = $request->mac_address;
+        $configuration->save();
+
+        return response()->json();
     }
 
     /**
