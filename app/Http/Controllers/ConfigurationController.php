@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ApiHelpers;
 use App\Models\Configuration;
 use Illuminate\Http\Request;
 
@@ -35,12 +36,16 @@ class ConfigurationController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $configuration = new Configuration();
         $configuration->json = $request->json;
         $configuration->mac_address = $request->mac_address;
         $configuration->save();
 
-        return response()->json();
+        $response = ApiHelpers::apiResponse(false, 200, '', $configuration);
+
+        return response()->json($response, 200);
     }
 
     /**
