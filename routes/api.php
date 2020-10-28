@@ -22,13 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/actions', [ActionController::class, 'index']);
-Route::get('/call', [ActionController::class, 'call']);
+Route::resource('/configurations', ConfigurationController::class);
 
-Route::get('/espa', [EspaController::class, 'index']);
-Route::get('/espa/{id}', [EspaController::class, 'show']);
-
-Route::get('/receiver', [ReceiverController::class, 'index']);
-Route::get('/receiver/{id}', [ReceiverController::class, 'show']);
-
-Route::post('/post', [ConfigurationController::class, 'store']);
