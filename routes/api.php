@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\ConfigController;
-use App\Http\Controllers\EspaController;
-use App\Http\Controllers\RuleController;
-use App\Http\Controllers\MatchController;
+use App\Http\Controllers\ConfigurationController;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,12 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::Resources([
-    'configs' => ConfigController::class,
-    'espas' => EspaController::class,
-    'rules' => RuleController::class,
-    'match' => MatchController::class,
-]);
+Route::resource('/configurations', ConfigurationController::class);
 
-//Route::resource('espas.rules', 'EspaRuleController');
 
