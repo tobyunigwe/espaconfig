@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ApiHelpers;
 use App\Http\Resources\ConfigurationResource;
+use Spatie\ArrayToXml\ArrayToXml;
 use App\Models\Configuration;
 use Illuminate\Http\Request;
+use SimpleXMLElement;
 
 class ConfigurationController extends Controller
 {
@@ -16,11 +18,21 @@ class ConfigurationController extends Controller
      */
     public function index()
     {
-        $configurations = Configuration::all();
+        $configurations = Configuration::all()->pluck('link', 'mac_address');
         $response = ApiHelpers::apiResponse(false, 200, '', $configurations);
 
         return response()->json($response, 200);
     }
+
+    //this is for the web route. send configuration to view
+    public function xml()
+    {
+        $configurations = Configuration::all();
+
+        return view('xml', compact('configurations'));
+
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +47,7 @@ class ConfigurationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,7 +58,7 @@ class ConfigurationController extends Controller
         $configuration->mac_address = $request->mac_address;
         $configurationSaved = $configuration->save();
         if ($configurationSaved) {
-            $response = ApiHelpers::apiResponse(false, 201, 'record saved successfully', null);
+            $response = ApiHelpers::apiResponse(false, 200, 'record saved successfully', null);
             return response()->json($response, 200);
         } else {
             $response = ApiHelpers::apiResponse(true, 400, 'record saving failed', null);
@@ -58,21 +70,33 @@ class ConfigurationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Configuration $configuration)
     {
-        $configurations = Configuration::findOrFail($id);
-        $response = ApiHelpers::apiResponse(false, 200, 'record received', $configurations);
+        $data = Configuration::query()
+            ->withCasts(['json' => 'json'])
+            ->get()
+            ->mapWithKeys(function ($configuration) {
+                // to wrap each config object: <config>...</config>
+                return ['config' => $configuration];
+            });
 
-        return response()->json($response, 200);
+        $result = ArrayToXml::convert(
+            $data->jsonSerialize(), // convert collection to array
+            'root', // root element name
+            true, // replace spaces by underscore in element's names
+            'UTF-8' // encoding
+        );
+
+        return response()->make($result, 200, ['Content-Type' => 'text/xml']);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -83,8 +107,8 @@ class ConfigurationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -93,7 +117,6 @@ class ConfigurationController extends Controller
         $configuration = Configuration::findOrFail($id);
         $configuration->json = $request->json;
         $configuration->mac_address = $request->mac_address;
-
         $configurationUpdated = $configuration->save();
         if ($configurationUpdated) {
             $response = ApiHelpers::apiResponse(false, 200, 'record updated successfully', null);
@@ -107,7 +130,7 @@ class ConfigurationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

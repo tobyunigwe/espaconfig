@@ -19,6 +19,7 @@ class CreateConfigurationsTable extends Migration
             $table->json('json');
             $table->timestamps();
         });
+
     }
 
     /**

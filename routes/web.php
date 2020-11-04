@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ConfigurationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/xml', [App\Http\Controllers\ConfigurationController::class, 'xml'])->name('xml');
+
+//Route::get('/xml',function(){
+//    $config = \App\Models\Configuration::all();
+//    return response()->xml(['config'=>$config->toArray()]);
+
+
+//});
