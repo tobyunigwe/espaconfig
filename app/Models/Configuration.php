@@ -15,8 +15,6 @@ class Configuration extends Model
 
     protected $casts = [
 
-        // if its name was different you could use:
-        // 'another_column' => 'json',
         'data' => 'array',
     ];
 
