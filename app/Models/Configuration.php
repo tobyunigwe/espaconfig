@@ -10,14 +10,14 @@ class Configuration extends Model
     use HasFactory;
 
     protected $fillable = [
-        'json', 'mac_address',
+        'config', 'mac_address',
     ];
 
     protected $casts = [
 
         // if its name was different you could use:
         // 'another_column' => 'json',
-        'espasdr' => 'json',
+        'data' => 'array',
     ];
 
     public function getLinkAttribute()

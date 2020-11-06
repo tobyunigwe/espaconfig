@@ -54,12 +54,12 @@ class ConfigurationController extends Controller
     {
 
         $configuration = new Configuration();
-        $configuration->json = $request->json;
+        $configuration->data = json_decode($request->data);
         $configuration->mac_address = $request->mac_address;
         $configurationSaved = $configuration->save();
         if ($configurationSaved) {
-            $response = ApiHelpers::apiResponse(false, 200, 'record saved successfully', null);
-            return response()->json($response, 200);
+            $response = ApiHelpers::apiResponse(false, 201, 'record saved successfully', null);
+            return response()->json($response, 201);
         } else {
             $response = ApiHelpers::apiResponse(true, 400, 'record saving failed', null);
             return response()->json($response, 400);
@@ -73,25 +73,19 @@ class ConfigurationController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
+
     public function show(Configuration $configuration)
     {
-        $data = Configuration::query()
-            ->withCasts(['json' => 'json'])
-            ->get()
-            ->mapWithKeys(function ($configuration) {
-                // to wrap each config object: <config>...</config>
-                return ['config' => $configuration];
-            });
-
         $result = ArrayToXml::convert(
-            $data->jsonSerialize(), // convert collection to array
-            'root', // root element name
+            $configuration->jsonSerialize(), // convert collection to array
+            'configuration', // root element name
             true, // replace spaces by underscore in element's names
             'UTF-8' // encoding
         );
 
         return response()->make($result, 200, ['Content-Type' => 'text/xml']);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -115,7 +109,7 @@ class ConfigurationController extends Controller
     {
 
         $configuration = Configuration::findOrFail($id);
-        $configuration->json = $request->json;
+        $configuration->data = json_decode($request->data);
         $configuration->mac_address = $request->mac_address;
         $configurationUpdated = $configuration->save();
         if ($configurationUpdated) {

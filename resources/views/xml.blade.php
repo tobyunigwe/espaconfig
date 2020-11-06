@@ -3,7 +3,7 @@
     <table>
         <tr>
             <th>Mac Address</th>
-            <th>Link</th>
+            <th>Links</th>
         </tr>
         @foreach($configurations as $configuration)
             <tr>
