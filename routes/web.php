@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SshController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EspaSdrXmlController;
 use App\Http\Controllers\DataController;
@@ -41,5 +42,8 @@ Route::prefix('admin')->middleware('can:manage-users')->name('admin.')->group(fu
         '/users' => UsersController::class
     ]);
 });
+
+//Ssh Routes
+Route::get('/ssh', [SshController::class, 'connect']);
 
 //Route::resource('data',DataController::class);
