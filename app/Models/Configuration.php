@@ -10,8 +10,10 @@ class Configuration extends Model
     use HasFactory;
 
     protected $fillable = [
-        'config', 'mac_address',
+        'data'
     ];
+
+    public $timestamps = false;
 
     protected $casts = [
 

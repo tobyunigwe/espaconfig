@@ -15,9 +15,7 @@ class CreateConfigurationsTable extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
-            $table->string('mac_address')->nullable();
             $table->json('data')->nullable();
-            $table->timestamps();
         });
 
     }

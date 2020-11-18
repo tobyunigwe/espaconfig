@@ -18,13 +18,13 @@ class ConfigurationController extends Controller
      */
     public function index()
     {
-        $configurations = Configuration::all()->pluck('link', 'mac_address');
+        $configurations = Configuration::all()->pluck('link', 'id');
         $response = ApiHelpers::apiResponse(false, 200, '', $configurations);
 
         return response()->json($response, 200);
     }
 
-    //this is for the web route. send configuration to view
+    //this is for the web route. send configuration list to view
     public function xml()
     {
         $configurations = Configuration::all();
@@ -55,7 +55,6 @@ class ConfigurationController extends Controller
 
         $configuration = new Configuration();
         $configuration->data = json_decode($request->data);
-        $configuration->mac_address = $request->mac_address;
         $configurationSaved = $configuration->save();
         if ($configurationSaved) {
             $response = ApiHelpers::apiResponse(false, 201, 'record saved successfully', null);
@@ -76,17 +75,10 @@ class ConfigurationController extends Controller
 
     public function show(Configuration $configuration)
     {
-        $result = ArrayToXml::convert(
-            $configuration->jsonSerialize(), // convert collection to array
-            'configuration', // root element name
-            true, // replace spaces by underscore in element's names
-            'UTF-8' // encoding
-        );
+        $result = ArrayToXml::convert(array_values($configuration->data)[0], 'config', true, 'UTF-8');
 
-        return response()->make($result, 200, ['Content-Type' => 'text/xml']);
+        return response($result)->header('Content-Type', 'text/xml');
     }
-
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -110,7 +102,6 @@ class ConfigurationController extends Controller
 
         $configuration = Configuration::findOrFail($id);
         $configuration->data = json_decode($request->data);
-        $configuration->mac_address = $request->mac_address;
         $configurationUpdated = $configuration->save();
         if ($configurationUpdated) {
             $response = ApiHelpers::apiResponse(false, 200, 'record updated successfully', null);
