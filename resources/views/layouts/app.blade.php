@@ -25,7 +25,7 @@
         <div class="container">
             <a class="navbar-brand d-flex" href="{{ url('/') }}">
                 <div><img src="/images/Picasse.png" class="pr-3" style="height: 30px; border-right: 1px solid #000000"></div>
-                <div class="pl-3">PicassEditor</div>
+                <div class="pl-3">Picasse Deployer</div>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
