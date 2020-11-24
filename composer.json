@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "ext-json": "*",
         "ext-simplexml": "*",
         "bmatovu/laravel-xml": "^3.0",
         "fideloper/proxy": "^4.2",
@@ -17,8 +18,7 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
-        "spatie/array-to-xml": "^2.15",
-      "ext-json": "*"
+        "spatie/array-to-xml": "^2.15"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

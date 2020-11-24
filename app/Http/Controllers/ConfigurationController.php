@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiHelpers;
-use App\Http\Resources\ConfigurationResource;
 use Spatie\ArrayToXml\ArrayToXml;
 use App\Models\Configuration;
 use Illuminate\Http\Request;
-use SimpleXMLElement;
+
 
 class ConfigurationController extends Controller
 {
@@ -75,8 +74,7 @@ class ConfigurationController extends Controller
 
     public function show(Configuration $configuration)
     {
-        $result = ArrayToXml::convert(array_values($configuration->data)[0], 'config', true, 'UTF-8');
-
+        $result = ArrayToXml::convert($configuration->data, 'config', true, 'UTF-8');
         return response($result)->header('Content-Type', 'text/xml');
     }
     /**
