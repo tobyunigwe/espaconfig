@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Helpers\ApiHelpers;
 use Spatie\ArrayToXml\ArrayToXml;
 use App\Models\Configuration;
@@ -72,11 +71,22 @@ class ConfigurationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
     public function show(Configuration $configuration)
     {
-        $result = ArrayToXml::convert($configuration->data, 'config', true, 'UTF-8');
+        $data = collect($configuration->data)->map(function ($value) {
+            if (is_array($value)) {
+                return collect($value)->filter()->toArray();
+            }
+
+            return $value;
+        })->filter()->toArray();
+
+        $result = ArrayToXml::convert($data, 'config', true, 'UTF-8');
+
         return response($result)->header('Content-Type', 'text/xml');
     }
+
     /**
      * Show the form for editing the specified resource.
      *
