@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<config version="2.1">
+
+    <general>
+        <drymode drymode="True|False">true</drymode>
+        <loglevel loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">INFO</loglevel>
+        <floodprotection>
+            <silentPeriod>32</silentPeriod>
+            <silenceRequired>false</silenceRequired>
+            <expirePeriod>443</expirePeriod>
+        </floodprotection>
+        <email>
+            <fromAddress fromAddress="from@picasse.com"/>
+            <bounceAddress bounceAddress="bounce@picasse.com"/>
+        </email>
+    </general>
+    <api>
+        <primaryUrl primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/>
+        <secondaryUrl secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/>
+        <username>efsd</username>
+        <password>sefd</password>
+        <incomingSmsNumber incomingSmsNumber="+31642500091"/>
+    </api>
+    <actions>
+        <action>
+            <name>gsg</name>
+            <type>email</type>
+            <recipients>
+                <number number="+3592342342"/>
+                <locationid>ergdf</locationid>
+                <locationid>ergdf</locationid>
+                <contactid>tdgfv</contactid>
+                <contactid>12</contactid>
+                <groupid>43</groupid>
+                <groupid>rgdf</groupid>
+                <tag tag="tag">dfdg</tag>
+            </recipients>
+            <message>
+                <priority>AVERAGE</priority>
+                <requiredReceipt>INFORMATION</requiredReceipt>
+                <modify>
+                    <modify>serg</modify>
+                </modify>
+                <voicecall>
+                    <voiceMessageId>ergds</voiceMessageId>
+                    <useTts>false</useTts>
+                </voicecall>
+            </message>
+        </action>
+    </actions>
+    <espa>
+        <enabled>1</enabled>
+        <general>
+            <option>
+                <option name="name">rtsdfv</option>
+            </option>
+        </general>
+        <rule>
+            <name>gfbv</name>
+            <match what="pager">bgfvyry</match>
+            <timeframe>
+                <startTime>rtgfv</startTime>
+                <endTime>ttged</endTime>
+                <daysOfWeek>tgdf</daysOfWeek>
+                <actionReference>tdgfv</actionReference>
+            </timeframe>
+        </rule>
+        <receiver file="file=/storage/espa-sdr/etc/espa-receiver.ini">
+            <main>
+                <pidFile>/storage/espa-sdr/var/espa-receiver.pid</pidFile>
+                <sleepTime>get</sleepTime>
+                <smscommand>/storage/bin/php -f /storage/espa-sdr/php/espa.php--</smscommand>
+            </main>
+            <heartbreak>
+                <timeout>sgts</timeout>
+                <statusfile>/storage/espa-sdr/log/heartbeat_status</statusfile>
+                <intervalfile>/storage/espa-sdr/log/heartbeat_interval</intervalfile>
+            </heartbreak>
+            <logging>
+                <verbosity>1</verbosity>
+                <logfile>/storage/espa-sdr/log/espa-receiver.log</logfile>
+            </logging>
+            <communication>
+                <port port="port default:/dev/ttyS2">egr</port>
+                <baudRate baudRate="baudRate default:9600">300</baudRate>
+                <dataBits dataBits="dataBits default:8">8</dataBits>
+                <parity parity="parity default:none">even</parity>
+            </communication>
+        </receiver>
+    </espa>
+    <sdr>
+        <enabled>1</enabled>
+        <general>
+            <option name="version">ryshtgdfv</option>
+            <option name="normalPinState">rthsdf</option>
+            <option name="alertTimeout">srtdgfv</option>
+            <option name="alertRepeatTimeout">tdhgsf</option>
+            <option name="activationTimeout">rtsdgf</option>
+            <option name="fakeMode">hgsetgd</option>
+        </general>
+        <pin>
+            <number/>
+            <txt/>
+            <timeframe>
+                <startTime/>
+                <endTime/>
+                <daysOfWeek/>
+                <actionReference/>
+            </timeframe>
+        </pin>
+    </sdr>
+    <modem file="/storage/espa-sdr/etc/.gammurc">
+        <port/>
+    </modem>
+<general><drymode drymode="True|False">true</drymode><loglevel loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">ERROR</loglevel><floodprotection><silentPeriod/><silenceRequired>true</silenceRequired><expirePeriod/></floodprotection><email><fromAddress fromAddress="from@picasse.com"/><bounceAddress bounceAddress="bounce@picasse.com"/></email></general><api><primaryUrl primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/><secondaryUrl secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/><username/><password/><incomingSmsNumber incomingSmsNumber="+31642500091"/></api><actions><action><name/><type>message</type><recipients><number number="+3592342342"/><locationid locationid="location id"/><locationid locationid="location id"/><contactid contactid="contact id"/><contactid contactid="contact id"/><groupid groupid="group id"/><groupid groupid="group id"/><tag tag="tag"/></recipients><message><priority>NOT CLASSIFIED</priority><requiredReceipt>NOT CLASSIFIED</requiredReceipt><modify><modify/></modify><voicecall><voiceMessageId/><useTts>true</useTts></voicecall></message></action></actions><espa><enabled>0</enabled><general><option><option name="name"/></option></general><rule><name/><match what="pager"/><timeframe><startTime/><endTime/><daysOfWeek/><actionReference/></timeframe></rule><receiver file="file=/storage/espa-sdr/etc/espa-receiver.ini"><main><pidFile>/storage/espa-sdr/var/espa-receiver.pid</pidFile><sleepTime/><smscommand>/storage/bin/php -f /storage/espa-sdr/php/espa.php--</smscommand></main><heartbreak><timeout/><statusfile>/storage/espa-sdr/log/heartbeat_status</statusfile><intervalfile>/storage/espa-sdr/log/heartbeat_interval</intervalfile></heartbreak><logging><verbosity>0</verbosity><logfile>/storage/espa-sdr/log/espa-receiver.log</logfile></logging><communication><port port="port default:/dev/ttyS2"/><baudRate baudRate="baudRate default:9600">300</baudRate><dataBits dataBits="dataBits default:8">7</dataBits><parity parity="parity default:none">none</parity></communication></receiver></espa><sdr><enabled>0</enabled><general><option name="version"/><option name="normalPinState"/><option name="alertTimeout"/><option name="alertRepeatTimeout"/><option name="activationTimeout"/><option name="fakeMode"/></general><pin><number/><txt/><timeframe><startTime/><endTime/><daysOfWeek/><actionReference/></timeframe></pin></sdr><modem file="/storage/espa-sdr/etc/.gammurc"><port/></modem><general><drymode drymode="True|False">true</drymode><loglevel loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">ERROR</loglevel><floodprotection><silentPeriod/><silenceRequired>true</silenceRequired><expirePeriod/></floodprotection><email><fromAddress fromAddress="from@picasse.com"/><bounceAddress bounceAddress="bounce@picasse.com"/></email></general><api><primaryUrl primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/><secondaryUrl secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/><username/><password/><incomingSmsNumber incomingSmsNumber="+31642500091"/></api><actions><action><name/><type>message</type><recipients><number number="+3592342342"/><locationid locationid="location id"/><locationid locationid="location id"/><contactid contactid="contact id"/><contactid contactid="contact id"/><groupid groupid="group id"/><groupid groupid="group id"/><tag tag="tag"/></recipients><message><priority>NOT CLASSIFIED</priority><requiredReceipt>NOT CLASSIFIED</requiredReceipt><modify><modify/></modify><voicecall><voiceMessageId/><useTts>true</useTts></voicecall></message></action></actions><espa><enabled>0</enabled><general><option><option name="name"/></option></general><rule><name/><match what="pager"/><timeframe><startTime/><endTime/><daysOfWeek/><actionReference/></timeframe></rule><receiver file="file=/storage/espa-sdr/etc/espa-receiver.ini"><main><pidFile>/storage/espa-sdr/var/espa-receiver.pid</pidFile><sleepTime/><smscommand>/storage/bin/php -f /storage/espa-sdr/php/espa.php--</smscommand></main><heartbreak><timeout/><statusfile>/storage/espa-sdr/log/heartbeat_status</statusfile><intervalfile>/storage/espa-sdr/log/heartbeat_interval</intervalfile></heartbreak><logging><verbosity>0</verbosity><logfile>/storage/espa-sdr/log/espa-receiver.log</logfile></logging><communication><port port="port default:/dev/ttyS2"/><baudRate baudRate="baudRate default:9600">300</baudRate><dataBits dataBits="dataBits default:8">7</dataBits><parity parity="parity default:none">none</parity></communication></receiver></espa><sdr><enabled>0</enabled><general><option name="version"/><option name="normalPinState"/><option name="alertTimeout"/><option name="alertRepeatTimeout"/><option name="activationTimeout"/><option name="fakeMode"/></general><pin><number/><txt/><timeframe><startTime/><endTime/><daysOfWeek/><actionReference/></timeframe></pin></sdr><modem file="/storage/espa-sdr/etc/.gammurc"><port/></modem><general><drymode drymode="True|False">true</drymode><loglevel loglevel="ERROR|WARNING|NOTICE|INFO|DEBUG">ERROR</loglevel><floodprotection><silentPeriod/><silenceRequired>true</silenceRequired><expirePeriod/></floodprotection><email><fromAddress fromAddress="from@picasse.com"/><bounceAddress bounceAddress="bounce@picasse.com"/></email></general><api><primaryUrl primaryUrl="http://vpn1.smsalarmering.nl/api/v2/jsonrpc/"/><secondaryUrl secondaryUrl="http://new.smsalarmering.nl/api/v2/jsonrpc/"/><username/><password/><incomingSmsNumber incomingSmsNumber="+31642500091"/></api><actions><action><name/><type>message</type><recipients><number number="+3592342342"/><locationid locationid="location id"/><locationid locationid="location id"/><contactid contactid="contact id"/><contactid contactid="contact id"/><groupid groupid="group id"/><groupid groupid="group id"/><tag tag="tag"/></recipients><message><priority>NOT CLASSIFIED</priority><requiredReceipt>NOT CLASSIFIED</requiredReceipt><modify><modify/></modify><voicecall><voiceMessageId/><useTts>true</useTts></voicecall></message></action></actions><espa><enabled>0</enabled><general><option><option name="name"/></option></general><rule><name/><match what="pager"/><timeframe><startTime/><endTime/><daysOfWeek/><actionReference/></timeframe></rule><receiver file="file=/storage/espa-sdr/etc/espa-receiver.ini"><main><pidFile>/storage/espa-sdr/var/espa-receiver.pid</pidFile><sleepTime/><smscommand>/storage/bin/php -f /storage/espa-sdr/php/espa.php--</smscommand></main><heartbreak><timeout/><statusfile>/storage/espa-sdr/log/heartbeat_status</statusfile><intervalfile>/storage/espa-sdr/log/heartbeat_interval</intervalfile></heartbreak><logging><verbosity>0</verbosity><logfile>/storage/espa-sdr/log/espa-receiver.log</logfile></logging><communication><port port="port default:/dev/ttyS2"/><baudRate baudRate="baudRate default:9600">300</baudRate><dataBits dataBits="dataBits default:8">7</dataBits><parity parity="parity default:none">none</parity></communication></receiver></espa><sdr><enabled>0</enabled><general><option name="version"/><option name="normalPinState"/><option name="alertTimeout"/><option name="alertRepeatTimeout"/><option name="activationTimeout"/><option name="fakeMode"/></general><pin><number/><txt/><timeframe><startTime/><endTime/><daysOfWeek/><actionReference/></timeframe></pin></sdr><modem file="/storage/espa-sdr/etc/.gammurc"><port/></modem></config>
