@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Helpers\ApiHelpers;
 use Spatie\ArrayToXml\ArrayToXml;
 use App\Models\Configuration;
@@ -22,12 +23,12 @@ class ConfigurationController extends Controller
         return response()->json($response, 200);
     }
 
-    //this is for the web route. send configuration list to view
+    //this is for the web route. send configurations list to view
     public function xml()
     {
         $configurations = Configuration::all();
 
-        return view('xml', compact('configurations'));
+        return view('configurations.index', compact('configurations'));
 
     }
 
