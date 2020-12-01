@@ -17,16 +17,12 @@ use App\Http\Controllers\Admin\ConfigurationsController;
 |
 */
 
-////Standard routes
-//Route::get('/', function () {
-//    return view('home');
-//});
 
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/configurations', [App\Http\Controllers\ConfigurationController::class, 'xml'])->name('configurations');
+Route::get('/configurations', [App\Http\Controllers\ConfigurationController::class, 'index'])->name('configurations');
 
 //Admin Routes
 Route::prefix('admin')->middleware('can:manage-users')->name('admin.')->group(function () {

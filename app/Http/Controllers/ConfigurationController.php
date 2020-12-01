@@ -14,13 +14,11 @@ class ConfigurationController extends Controller
     }
 
     //this is for the web route. send configurations list to view
-    public function xml()
+    public function index()
     {
         $user = Auth::user();
 
         $configurations = Configuration::all();
-
-//        return view('configurations.index', compact('configurations'));
 
         return view('configurations.index', [ 'user' => $user, 'configurations' => $configurations]);
 
