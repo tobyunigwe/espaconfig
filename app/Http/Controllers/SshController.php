@@ -35,7 +35,7 @@ class SshController extends Controller
             echo "SSH Authentication Successful\n";
 
             //define the source and destination file paths
-            $srcFile = 'D:\Code\Comakership\picasse\public\ssh\testxml.xml';
+            $srcFile = 'D:\Code\Comakership\picasse\public\ssh\espasdr.xml';
             $dstFile = '/storage/espa-sdr/etc/espa-sdr.xml';
 
             //create a SFTP session
