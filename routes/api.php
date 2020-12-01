@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ConfigurationController;
+use App\Http\Controllers\ApiController;
 
 
 use Illuminate\Http\Request;
@@ -23,6 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::resource('/configurations', ConfigurationController::class);
+Route::resource('/configurations', ApiController::class);
 
 
