@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92006abfb0afa0b489ce0387423263f1",
+    "content-hash": "203b3698fe4753d167eb37c58c1b2de3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -760,16 +760,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.3.0",
+            "version": "v8.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "7f8ac4f4abee41215b7f421f0dc491c844aea7b9"
+                "reference": "1c57ab5e375d0a897c22b29e8352453be514131e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/7f8ac4f4abee41215b7f421f0dc491c844aea7b9",
-                "reference": "7f8ac4f4abee41215b7f421f0dc491c844aea7b9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1c57ab5e375d0a897c22b29e8352453be514131e",
+                "reference": "1c57ab5e375d0a897c22b29e8352453be514131e",
                 "shasum": ""
             },
             "require": {
@@ -919,7 +919,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-09-15T14:50:30+00:00"
+            "time": "2020-09-16T16:13:13+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1038,6 +1038,68 @@
                 "ui"
             ],
             "time": "2020-09-11T15:34:08+00:00"
+        },
+        {
+            "name": "laravelcollective/remote",
+            "version": "v6.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/remote.git",
+                "reference": "f4b200f24f76307b09d7a5af230ea7119cbf9811"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/remote/zipball/f4b200f24f76307b09d7a5af230ea7119cbf9811",
+                "reference": "f4b200f24f76307b09d7a5af230ea7119cbf9811",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": ">=7.2",
+                "phpseclib/phpseclib": "^2.0"
+            },
+            "require-dev": {
+                "illuminate/console": "^6.0|^7.0|^8.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~5.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Remote\\RemoteServiceProvider"
+                    ],
+                    "aliases": {
+                        "SSH": "Collective\\Remote\\RemoteFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Remote\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Tom Shafer",
+                    "email": "tj@tjshafer.com"
+                }
+            ],
+            "description": "Remote SSH access for The Laravel Framework.",
+            "homepage": "http://laravelcollective.com",
+            "time": "2020-09-07T20:21:24+00:00"
         },
         {
             "name": "league/commonmark",
@@ -1608,6 +1670,97 @@
             "time": "2020-07-20T17:29:33+00:00"
         },
         {
+            "name": "phpseclib/phpseclib",
+            "version": "2.0.29",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpseclib/phpseclib.git",
+                "reference": "497856a8d997f640b4a516062f84228a772a48a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/497856a8d997f640b4a516062f84228a772a48a8",
+                "reference": "497856a8d997f640b4a516062f84228a772a48a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phing/phing": "~2.7",
+                "phpunit/phpunit": "^4.8.35|^5.7|^6.0",
+                "squizlabs/php_codesniffer": "~2.0"
+            },
+            "suggest": {
+                "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
+                "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
+                "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
+                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "phpseclib/bootstrap.php"
+                ],
+                "psr-4": {
+                    "phpseclib\\": "phpseclib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Wigginton",
+                    "email": "terrafrost@php.net",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Patrick Monnerat",
+                    "email": "pm@datasphere.ch",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Andreas Fischer",
+                    "email": "bantu@phpbb.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Hans-Jürgen Petrich",
+                    "email": "petrich@tronic-media.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
+            "homepage": "http://phpseclib.sourceforge.net",
+            "keywords": [
+                "BigInteger",
+                "aes",
+                "asn.1",
+                "asn1",
+                "blowfish",
+                "crypto",
+                "cryptography",
+                "encryption",
+                "rsa",
+                "security",
+                "sftp",
+                "signature",
+                "signing",
+                "ssh",
+                "twofish",
+                "x.509",
+                "x509"
+            ],
+            "time": "2020-09-08T04:24:43+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "1.0.0",
             "source": {
@@ -2151,6 +2304,105 @@
                 "uuid"
             ],
             "time": "2020-08-18T17:17:46+00:00"
+        },
+        {
+            "name": "rummykhan/easy-xml",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rummykhan/easy-xml.git",
+                "reference": "b8d6b1d7c8d77bd880ef40e15fda784c59931cd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rummykhan/easy-xml/zipball/b8d6b1d7c8d77bd880ef40e15fda784c59931cd0",
+                "reference": "b8d6b1d7c8d77bd880ef40e15fda784c59931cd0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RummyKhan\\EasyXml\\EasyXmlServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RummyKhan\\EasyXml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rehan Manzoor",
+                    "email": "rehan_manzoor@outlook.com"
+                }
+            ],
+            "description": "Convert your data to xml string easily.",
+            "keywords": [
+                "Convert data to XML",
+                "laravel 5",
+                "xml",
+                "yii 2.0"
+            ],
+            "time": "2017-11-21T08:07:29+00:00"
+        },
+        {
+            "name": "spatie/array-to-xml",
+            "version": "2.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/array-to-xml.git",
+                "reference": "15b5229fe8c9c14954b21f2bac0cc003ffbc54a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/array-to-xml/zipball/15b5229fe8c9c14954b21f2bac0cc003ffbc54a5",
+                "reference": "15b5229fe8c9c14954b21f2bac0cc003ffbc54a5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.0",
+                "spatie/phpunit-snapshot-assertions": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\ArrayToXml\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert an array to xml",
+            "homepage": "https://github.com/spatie/array-to-xml",
+            "keywords": [
+                "array",
+                "convert",
+                "xml"
+            ],
+            "time": "2020-09-14T19:07:17+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4198,16 +4450,16 @@
         },
         {
             "name": "facade/flare-client-php",
-            "version": "1.3.5",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/flare-client-php.git",
-                "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8"
+                "reference": "451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/25907a113bfc212a38d458ae365bfb902b4e7fb8",
-                "reference": "25907a113bfc212a38d458ae365bfb902b4e7fb8",
+                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799",
+                "reference": "451fadf38e9f635e7f8e1f5b3cf5c9eb82f11799",
                 "shasum": ""
             },
             "require": {
@@ -4220,7 +4472,6 @@
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.14",
-                "larapack/dd": "^1.1",
                 "phpunit/phpunit": "^7.5.16",
                 "spatie/phpunit-snapshot-assertions": "^2.0"
             },
@@ -4250,7 +4501,7 @@
                 "flare",
                 "reporting"
             ],
-            "time": "2020-08-26T18:06:23+00:00"
+            "time": "2020-09-18T06:35:11+00:00"
         },
         {
             "name": "facade/ignition",
@@ -4871,16 +5122,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.2.1",
+            "version": "5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "d870572532cd70bc3fab58f2e23ad423c8404c44"
+                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/d870572532cd70bc3fab58f2e23ad423c8404c44",
-                "reference": "d870572532cd70bc3fab58f2e23ad423c8404c44",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/069a785b2141f5bcf49f3e353548dc1cce6df556",
+                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556",
                 "shasum": ""
             },
             "require": {
@@ -4919,20 +5170,20 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2020-08-15T11:14:08+00:00"
+            "time": "2020-09-03T19:13:55+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651"
+                "reference": "6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/e878a14a65245fbe78f8080eba03b47c3b705651",
-                "reference": "e878a14a65245fbe78f8080eba03b47c3b705651",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0",
+                "reference": "6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0",
                 "shasum": ""
             },
             "require": {
@@ -4964,7 +5215,7 @@
                 }
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "time": "2020-06-27T10:12:23+00:00"
+            "time": "2020-09-17T18:55:26+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -5031,16 +5282,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.1.9",
+            "version": "9.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f"
+                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f",
-                "reference": "cf6582906d4b2502c5f4c6be6a3d0b4cd5b3ef7f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5134e2a65ec48e2f7126d12f1503a9889c660bdf",
+                "reference": "5134e2a65ec48e2f7126d12f1503a9889c660bdf",
                 "shasum": ""
             },
             "require": {
@@ -5094,7 +5345,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-09-15T06:14:11+00:00"
+            "time": "2020-09-18T05:25:29+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -6355,7 +6606,8 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3"
+        "php": "^7.3",
+        "ext-ssh2": "*"
     },
     "platform-dev": []
 }

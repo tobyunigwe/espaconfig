@@ -9,12 +9,26 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+
+        "ext-json": "*",
+        "ext-simplexml": "*",
+        "bmatovu/laravel-xml": "^3.0",
+
+        "ext-ssh2": "*",
+
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0",
+
+        "spatie/array-to-xml": "^2.15",
+
+        "laravelcollective/remote": "^6.2",
+        "rummykhan/easy-xml": "^1.0"
+
+
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
