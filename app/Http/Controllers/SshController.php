@@ -19,6 +19,11 @@ class SshController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        return view('ssh.index');
+    }
+
     private function connection()
     {
         //create a SSH connection
@@ -32,11 +37,10 @@ class SshController extends Controller
 
         //checking info for server to grant access (VPN must be on for this to work)
         if (ssh2_auth_pubkey_file($connection, $username, $pubkey, $privKey, $passphrase)) {
-            echo "SSH Authentication Successful\n";
 
             //define the source and destination file paths
-            $srcFile = 'D:\Code\Comakership\picasse\public\ssh\espasdr.xml';
-            $dstFile = '/storage/espa-sdr/etc/espa-sdr.xml';
+            $srcFile = env('SSH_SOURCE_FILE');
+            $dstFile = env('SSH_DESTINATION_FILE');
 
             //create a SFTP session
             $sftp = ssh2_sftp($connection);
@@ -62,7 +66,6 @@ class SshController extends Controller
                     throw new Exception("Could not send data from file: $srcFile.");
                 }
                 Log::info('Local file sent');
-                echo('File transfer complete');
 
                 fclose($stream);
 
@@ -75,6 +78,7 @@ class SshController extends Controller
         } else {
             die('Public Key Authentication Failed');
         }
+        return back()->with('status', 'File transfer complete!');
     }
 
     public function connect()

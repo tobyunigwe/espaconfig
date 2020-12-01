@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\SshController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\ConfigurationsController;
 
@@ -37,6 +36,7 @@ Route::prefix('admin')->middleware('can:manage-users')->name('admin.')->group(fu
 });
 
 //Ssh Routes
-Route::get('/sshs', [SshController::class, 'connect'])->name('deploy');
+Route::get('/sshs', [SshController::class, 'connect'])->name('ssh');
+Route::get('/deployment', [SshController::class, 'index'])->name('deployment');
 
 

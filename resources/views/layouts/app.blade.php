@@ -54,7 +54,7 @@
                                 <a class="nav-link" href="{{ route('configurations') }}">{{ __('Configurations') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('deploy') }}">{{ __('Deployment') }}</a>
+                                <a class="nav-link" href="{{ route('deployment') }}">{{ __('Deployment') }}</a>
                             </li>
                         @endcan
 
