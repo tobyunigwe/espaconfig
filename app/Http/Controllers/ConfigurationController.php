@@ -14,7 +14,7 @@ class ConfigurationController extends Controller
     }
 
     //this is for the web route. send configurations list to view
-    public function xml()
+    public function index()
     {
         $user = Auth::user();
 
