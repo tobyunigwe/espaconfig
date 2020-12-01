@@ -16,7 +16,6 @@ class ConfigurationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
     public function index()
     {
         $configurations = Configuration::all()->pluck('link', 'id');
@@ -28,14 +27,13 @@ class ConfigurationController extends Controller
     //this is for the web route. send configurations list to view
     public function xml()
     {
-
         $user = Auth::user();
 
         $configurations = Configuration::all();
 
 //        return view('configurations.index', compact('configurations'));
 
-        return view('configurations.index', ['configurations' => $configurations, 'user' => $user]);
+        return view('configurations.index', [ 'user' => $user, 'configurations' => $configurations]);
 
     }
 

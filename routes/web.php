@@ -18,12 +18,15 @@ use App\Http\Controllers\Admin\UsersController;
 */
 
 //Standard routes
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', [App\Http\Controllers\ConfigurationController::class, 'xml'])->name('configurations');
+Route::get('/configurations', [App\Http\Controllers\ConfigurationController::class, 'xml'])->name('configurations');
 
 //Admin Routes
 Route::prefix('admin')->middleware('can:manage-users')->name('admin.')->group(function () {
