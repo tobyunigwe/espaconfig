@@ -20,8 +20,6 @@ class ConfigurationController extends Controller
 
         $configurations = Configuration::all();
 
-//        return view('configurations.index', compact('configurations'));
-
         return view('configurations.index', [ 'user' => $user, 'configurations' => $configurations]);
 
     }

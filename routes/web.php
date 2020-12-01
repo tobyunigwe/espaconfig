@@ -18,10 +18,6 @@ use App\Http\Controllers\Admin\ConfigurationsController;
 |
 */
 
-////Standard routes
-//Route::get('/', function () {
-//    return view('home');
-//});
 
 Auth::routes();
 
