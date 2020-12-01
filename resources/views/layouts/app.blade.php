@@ -24,7 +24,8 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex" href="{{ url('/') }}">
-                <div><img src="/images/Picasse.png" class="pr-3" style="height: 30px; border-right: 1px solid #000000"></div>
+                <div><img src="/images/Picasse.png" class="pr-3" style="height: 30px; border-right: 1px solid #000000">
+                </div>
                 <div class="pl-3">Picasse Deployer</div>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -48,11 +49,11 @@
                         </li>
 
                     @else
-                        @can('access-editor')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('editor') }}">{{ __('Editor') }}</a>
-                        </li>
-                        @endcan
+                        {{--                        @can('access-editor')--}}
+                        {{--                        <li class="nav-item">--}}
+                        {{--                            <a class="nav-link" href="{{ route('editor') }}">{{ __('Editor') }}</a>--}}
+                        {{--                        </li>--}}
+                        {{--                        @endcan--}}
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

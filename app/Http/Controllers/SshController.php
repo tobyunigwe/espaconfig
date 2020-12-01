@@ -11,14 +11,18 @@ use PHPUnit\Framework\Exception;
  */
 class SshController extends Controller
 {
-
     /**
      *
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     private function connection()
     {
         //create a SSH connection
-        $connection = ssh2_connect('10.10.2.79', 22, array('hostkey'=>'ssh-rsa'));
+        $connection = ssh2_connect('10.10.2.79', 22, array('hostkey' => 'ssh-rsa'));
 
         //defining keys for MC to grant access
         $pubkey = env('SSH_PUBLIC_KEY');
@@ -38,7 +42,7 @@ class SshController extends Controller
             $sftp = ssh2_sftp($connection);
 
             //opening file transfer stream with write functionality
-            $stream = @fopen('ssh2.sftp://'.$sftp.$dstFile, 'w');
+            $stream = @fopen('ssh2.sftp://' . $sftp . $dstFile, 'w');
             try {
 
                 if (!$stream) {
@@ -58,11 +62,11 @@ class SshController extends Controller
                     throw new Exception("Could not send data from file: $srcFile.");
                 }
                 Log::info('Local file sent');
-                echo ('File transfer complete');
+                echo('File transfer complete');
 
                 fclose($stream);
 
-            //throw all errors and send to log
+                //throw all errors and send to log
             } catch (Exception $e) {
                 error_log('Exception: ' . $e->getMessage());
                 fclose($stream);
