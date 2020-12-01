@@ -30,7 +30,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRole('admin');
         });
 
-        Gate::define('access-editor', function ($user){
+        Gate::define('access-ssh', function ($user){
+            return $user->hasRole('admin');
+        });
+
+        Gate::define('access-configurations', function ($user){
             return $user->hasRole('admin');
         });
 

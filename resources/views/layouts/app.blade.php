@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>PicassEditor</title>
+    <title>Picasse Editor</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,7 +23,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand d-flex" href="{{ url('/') }}">
+            <a class="navbar-brand d-flex" href="{{ url('/home') }}">
                 <div><img src="/images/Picasse.png" class="pr-3" style="height: 30px; border-right: 1px solid #000000">
                 </div>
                 <div class="pl-3">Picasse Deployer</div>
@@ -49,11 +49,14 @@
                         </li>
 
                     @else
-                        {{--                        @can('access-editor')--}}
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <a class="nav-link" href="{{ route('editor') }}">{{ __('Editor') }}</a>--}}
-                        {{--                        </li>--}}
-                        {{--                        @endcan--}}
+                        @can('access-configurations')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('configurations') }}">{{ __('Configurations') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('deploy') }}">{{ __('Deployment') }}</a>
+                            </li>
+                        @endcan
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

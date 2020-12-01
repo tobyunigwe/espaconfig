@@ -36,6 +36,6 @@ Route::prefix('admin')->middleware('can:manage-users')->name('admin.')->group(fu
 });
 
 //Ssh Routes
-Route::get('/sshs', [SshController::class, 'connect']);
+Route::get('/sshs', [SshController::class, 'connect'])->name('deploy');
 
 

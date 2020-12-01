@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Welcome, ') . Auth::user()->name }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -19,7 +19,10 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class="container">
+                        <img class="img-fluid mx-auto d-block" style="margin: auto" src="/images/picasse-logo.png" alt="">
+                    </div>
+
                 </div>
             </div>
         </div>
