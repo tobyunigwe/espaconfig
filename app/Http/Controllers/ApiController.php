@@ -16,57 +16,16 @@ class ApiController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
-    {
-        $configurations = Configuration::all()->pluck('link', 'id');
-        $response = ApiHelpers::apiResponse(false, 200, '', $configurations);
-
-        return response()->json($response, 200);
-    }
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        $configuration = new Configuration();
-        $configuration->data = json_decode($request->data);
-        $configurationSaved = $configuration->save();
-        if ($configurationSaved) {
-            $response = ApiHelpers::apiResponse(false, 201, 'record saved successfully', null);
-            return response()->json($response, 201);
-        } else {
-            $response = ApiHelpers::apiResponse(true, 400, 'record saving failed', null);
-            return response()->json($response, 400);
-        }
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
+//    public function index()
+//    {
+//        $configurations = Configuration::all()->pluck('link', 'id');
+//        $response = ApiHelpers::apiResponse(false, 200, '', $configurations);
+//
+//        return response()->json($response, 200);
+//    }
 
 
-    public function show(Configuration $configuration)
+    public function index(Configuration $configuration)
     {
         $data = collect($configuration->data)->map(function ($value) {
             if (is_array($value)) {
@@ -79,58 +38,8 @@ class ApiController extends Controller
         $result = ArrayToXml::convert($data, 'config', true, 'UTF-8');
 
         return response($result)->header('Content-Type', 'text/xml');
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-        $configuration = Configuration::findOrFail($id);
-        $configuration->data = json_decode($request->data);
-        $configurationUpdated = $configuration->save();
-        if ($configurationUpdated) {
-            $response = ApiHelpers::apiResponse(false, 200, 'record updated successfully', null);
-            return response()->json($response, 200);
-        } else {
-            $response = ApiHelpers::apiResponse(true, 400, 'record update failed', null);
-            return response()->json($response, 400);
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $configuration = Configuration::findOrFail($id);
-        $configurationDeleted = $configuration->delete();
-
-        if ($configurationDeleted) {
-            $response = ApiHelpers::apiResponse(false, 200, 'record deleted successfully', null);
-            return response()->json($response, 200);
-        } else {
-            $response = ApiHelpers::apiResponse(true, 400, 'record delete failed', null);
-            return response()->json($response, 400);
-        }
-    }
 }
