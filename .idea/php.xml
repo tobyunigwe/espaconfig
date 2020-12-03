@@ -115,6 +115,8 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
       <path value="$PROJECT_DIR$/vendor/bmatovu/laravel-xml" />
+      <path value="$PROJECT_DIR$/vendor/laravelcollective/remote" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

@@ -14,10 +14,6 @@ class SshController extends Controller
     /**
      *
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function index()
     {
@@ -36,7 +32,7 @@ class SshController extends Controller
         $passphrase = env('SSH_PASSPHRASE');
 
         //checking info for server to grant access (VPN must be on for this to work)
-        if (ssh2_auth_pubkey_file($connection, $username, $pubkey, $privKey, $passphrase)) {
+        if (ssh2_auth_pubkey_file($connection, $pubkey, $privKey, $passphrase)) {
 
             //define the source and destination file paths
             $srcFile = env('SSH_SOURCE_FILE');

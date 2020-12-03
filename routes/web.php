@@ -18,18 +18,12 @@ use App\Http\Controllers\Admin\ConfigurationsController;
 */
 
 
-Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/configurations', [App\Http\Controllers\ConfigurationController::class, 'index'])->name('configurations');
 
-//Admin Routes
-Route::prefix('admin')->middleware('can:manage-users')->name('admin.')->group(function () {
-    Route::resources([
-        '/users' => UsersController::class
-    ]);
-});
+
 
 //Ssh Routes
 Route::get('/sshs', [SshController::class, 'connect'])->name('ssh');
