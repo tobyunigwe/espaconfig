@@ -15,7 +15,7 @@
                             </div>
                         @endif
 
-                            <a href="{{ route('ssh') }}" class="btn btn-primary">Deploy configuration</a>
+                            <a href="{{ route('ssh2') }}" class="btn btn-primary">Deploy configuration</a>
 
                     </div>
                 </div>

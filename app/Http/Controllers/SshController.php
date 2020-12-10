@@ -20,10 +20,10 @@ class SshController extends Controller
         return view('ssh.index');
     }
 
-    private function connection()
+    public function connection($ipAdress)
     {
         //create a SSH connection
-        $connection = ssh2_connect('10.10.2.79', 22, array('hostkey' => 'ssh-rsa'));
+        $connection = ssh2_connect($ipAdress, 22, array('hostkey' => 'ssh-rsa'));
 
         //defining keys for MC to grant access
         $pubkey = env('SSH_PUBLIC_KEY');
@@ -31,8 +31,9 @@ class SshController extends Controller
         $username = env('SSH_USERNAME');
         $passphrase = env('SSH_PASSPHRASE');
 
+
         //checking info for server to grant access (VPN must be on for this to work)
-        if (ssh2_auth_pubkey_file($connection, $pubkey, $privKey, $passphrase)) {
+        if (ssh2_auth_pubkey_file($connection, $username, $pubkey, $privKey, $passphrase)) {
 
             //define the source and destination file paths
             $srcFile = env('SSH_SOURCE_FILE');
@@ -77,10 +78,5 @@ class SshController extends Controller
         return back()->with('status', 'File transfer complete!');
     }
 
-    public function connect()
-    {
-        //accessing the private method
-        return $this->connection();
-    }
 }
 
