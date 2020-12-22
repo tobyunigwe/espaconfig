@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\ApiHelpers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
+use League\OAuth2\Client\Provider\GenericProvider;
 use Spatie\ArrayToXml\ArrayToXml;
 use App\Models\Configuration;
 use Illuminate\Http\Request;
@@ -24,17 +26,6 @@ class ApiController extends Controller
 //
 //        return response()->json($response, 200);
 //    }
-
-
-    public function authenticate()
-    {
-        //declaring auth variables
-        $username = env('API_USERNAME');
-        $password = env('API_PASSWORD');
-
-        $auth = Http::withBasicAuth($username, $password);
-        return $auth;
-    }
 
     public function handleIncomingRequest(Request $request)
     {
@@ -69,6 +60,37 @@ class ApiController extends Controller
 
     }
 
+
+
+
+    public function authenticate()
+    {
+
+        $provider = new \League\OAuth2\Client\Provider\GenericProvider([
+            'clientId' => 'cd464722-011c-4371-9566-7662c5ca1e87',    // The client ID assigned to you by the provider
+            'clientSecret' => 'hUlKc91n-5slnJ~t3HfKFiw1r3x_x~We.y',    // The client password assigned to you by the provider
+            'redirectUri' => '127.0.0.1:8000',
+            'urlAuthorize' => 'https://login.microsoftonline.com/25f2f5dc-0e4d-4c27-b5b4-ff4b5bf90d00/oauth2/v2.0/authorize',
+            'urlAccessToken' => 'https://login.microsoftonline.com/25f2f5dc-0e4d-4c27-b5b4-ff4b5bf90d00/oauth2/v2.0/token',
+            'urlResourceOwnerDetails' => '',
+            'scopes' => '6b093944-8625-4f1a-b861-029380fb4424/.default'
+        ]);
+
+        try {
+
+            // Try to get an access token using the client credentials grant.
+            $accessToken = $provider->getToken();
+
+        } catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
+
+            // Failed to get the access token
+            exit($e->getMessage());
+        }
+
+        $auth = Http::withToken($accessToken);
+
+        return $auth;
+    }
 
     public function index()
     {

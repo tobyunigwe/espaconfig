@@ -20,6 +20,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravelcollective/remote": "^6.2",
+        "league/oauth2-client": "^2.6",
         "rummykhan/easy-xml": "^1.0",
         "spatie/array-to-xml": "^2.15"
     },
