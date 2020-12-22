@@ -96,6 +96,5 @@ class ApiController extends Controller
         $result = ArrayToXml::convert($data, 'config', true, 'UTF-8');
 
         return response($result)->header('Content-Type', 'text/xml');
-
     }
 }

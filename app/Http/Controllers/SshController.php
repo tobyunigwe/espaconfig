@@ -31,7 +31,6 @@ class SshController extends Controller
         $username = env('SSH_USERNAME');
         $passphrase = env('SSH_PASSPHRASE');
 
-
         //checking info for server to grant access (VPN must be on for this to work)
         if (ssh2_auth_pubkey_file($connection, $username, $pubkey, $privKey, $passphrase)) {
 
@@ -63,6 +62,34 @@ class SshController extends Controller
                     throw new Exception("Could not send data from file: $srcFile.");
                 }
                 Log::info('Local file sent');
+
+//                prevent the script to run before the MC is ready for it
+//                sleep(10);
+
+                $stream = ssh2_exec($connection, "ESPA_SDR_CONFIG '/storage/espa-sdr/bin/etc/espa-sdr.xml' php -f /storage/espa-sdr/php/generate-config.php", null, []);
+//                $stream = ssh2_exec($connection, "php -f /storage/espa-sdr/php/generate-config.php", null, ["ESPA_SDR_CONFIG" => "/storage/espa-sdr/bin/etc/espa-sdr.xml"]);
+                $stream_out = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO);
+                echo stream_get_contents($stream_out);
+//
+//                $output2 = ssh2_exec($connection, '^[');
+//                stream_set_blocking($output2, true);
+//                $stream_out = ssh2_fetch_stream($output2, SSH2_STREAM_STDIO);
+//                echo stream_get_contents($stream_out);
+//
+//                $output3 = ssh2_exec($connection, '^[');
+//                stream_set_blocking($output3, true);
+//                $stream_out = ssh2_fetch_stream($output3, SSH2_STREAM_STDIO);
+//                echo stream_get_contents($stream_out);
+
+//                $commands = [ '/storage/espa-sdr/bin/configure', '^[[21~' ];
+//                ssh2_auth_password( $connection, 'username', 'password' );
+//                $output = [];
+//                foreach ($commands as $cmd) {
+//                    $stream = ssh2_exec( $connection, $cmd );
+//                    stream_set_blocking( $stream, true );
+//                    $stream_out = ssh2_fetch_stream( $stream, SSH2_STREAM_STDIO );
+//                    $output[] = stream_get_contents($stream_out);
+//                }
 
                 fclose($stream);
 
