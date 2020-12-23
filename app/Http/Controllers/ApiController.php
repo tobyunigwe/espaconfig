@@ -131,6 +131,31 @@ class ApiController extends Controller
         return response($result)->header('Content-Type', 'text/xml');
 
     }
+
+    public function status(Request $request)
+    {
+
+        $ipAdress = $request->input('identifier');
+
+        //get the form params
+        $status = $request->get('status');
+        $information = $request->get('information');
+        $dateTime = $request->get('dateTime');
+
+        $res = $this->authenticate()->asForm()->post( 'https://configuration.picasse.io/status/espasdr/'. $ipAdress, [
+            'status' => $status,
+            'information' => $information,
+            'dateTime' => $dateTime
+        ]);
+        if ($res) {
+            $response = ApiHelpers::apiResponse(false, 201, 'status saved successfully', null);
+            return response()->json($response, 201);
+        } else {
+            $response = ApiHelpers::apiResponse(true, 400, 'status saving failed', null);
+            return response()->json($response, 400);
+        }
+
+    }
 }
 
 ////    public function index()

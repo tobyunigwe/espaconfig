@@ -20,8 +20,16 @@ class SshController extends Controller
         return view('ssh.index');
     }
 
-    public function connection($ipAdress)
+    /**
+     *
+     *
+     * @param $ipAdress
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function connection()
     {
+        $ipAdress = '10.10.2.79';
+
         //create a SSH connection
         $connection = ssh2_connect($ipAdress, 22, array('hostkey' => 'ssh-rsa'));
 
@@ -66,10 +74,13 @@ class SshController extends Controller
 //                prevent the script to run before the MC is ready for it
 //                sleep(10);
 
-                $stream = ssh2_exec($connection, "ESPA_SDR_CONFIG '/storage/espa-sdr/bin/etc/espa-sdr.xml' php -f /storage/espa-sdr/php/generate-config.php", null, []);
-//                $stream = ssh2_exec($connection, "php -f /storage/espa-sdr/php/generate-config.php", null, ["ESPA_SDR_CONFIG" => "/storage/espa-sdr/bin/etc/espa-sdr.xml"]);
+
+
+                $stream = ssh2_exec($connection, 'export ESPA_SDR_CONFIG="/storage/espa-sdr/etc/espa-sdr.xml" ; php -f /storage/espa-sdr/php/generate-config.php', null, []);                stream_set_blocking($stream, true);
+
                 $stream_out = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO);
                 echo stream_get_contents($stream_out);
+                exit();
 //
 //                $output2 = ssh2_exec($connection, '^[');
 //                stream_set_blocking($output2, true);
@@ -102,7 +113,7 @@ class SshController extends Controller
         } else {
             die('Public Key Authentication Failed');
         }
-        return back()->with('status', 'File transfer complete!');
+        return $f;
     }
 
 }

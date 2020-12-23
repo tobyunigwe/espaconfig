@@ -27,7 +27,7 @@ Route::get('/configurations', [App\Http\Controllers\ConfigurationController::cla
 
 
 //Ssh Routes
-Route::get('/ssh2', [SshController::class, 'connect'])->name('ssh2');
+Route::get('/ssh2', [SshController::class, 'connection'])->name('ssh2');
 Route::get('/deployment', [SshController::class, 'index'])->name('deployment');
 
 
