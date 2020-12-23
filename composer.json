@@ -22,7 +22,8 @@
         "laravelcollective/remote": "^6.2",
         "league/oauth2-client": "^2.6",
         "rummykhan/easy-xml": "^1.0",
-        "spatie/array-to-xml": "^2.15"
+        "spatie/array-to-xml": "^2.15",
+        "thenetworg/oauth2-azure": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
