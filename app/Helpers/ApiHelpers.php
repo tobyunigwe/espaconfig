@@ -4,10 +4,20 @@ namespace App\Helpers;
 
 class ApiHelpers {
 
+    /**
+     * Creates Api response after making requests.
+     *
+     * @param $error
+     * @param $code
+     * @param $message
+     * @param $data
+     * @return array
+     */
     public static function apiResponse($error, $code, $message, $data)
     {
         $result = [];
 
+        //Error check
         if ($error) {
             $result['success'] = false;
             $result['code'] = $code;

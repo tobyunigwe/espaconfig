@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 
 
 Route::resource('/configurations', ApiController::class);
-
+Route::post('/espasdrconfiguration', [ App\Http\Controllers\ApiController::class, 'handleIncomingRequest']);
+Route::post('/status', [ App\Http\Controllers\ApiController::class, 'status']);
 
