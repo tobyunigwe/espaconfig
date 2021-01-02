@@ -24,7 +24,7 @@ class SshController extends Controller
      *
      *
      * @param $ipAdress
-     * @return \Illuminate\Http\RedirectResponse
+     * @return void
      */
     public function connection()
     {
@@ -71,38 +71,31 @@ class SshController extends Controller
                 }
                 Log::info('Local file sent');
 
-//                prevent the script to run before the MC is ready for it
-//                sleep(10);
-
-
-
+                //Commands for the MC to generate configuration files.
                 $stream = ssh2_exec($connection, 'export ESPA_SDR_CONFIG="/storage/espa-sdr/etc/espa-sdr.xml" ; php -f /storage/espa-sdr/php/generate-config.php', null, []);                stream_set_blocking($stream, true);
 
-                $stream_out = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO);
-                echo stream_get_contents($stream_out);
-                exit();
-//
-//                $output2 = ssh2_exec($connection, '^[');
-//                stream_set_blocking($output2, true);
-//                $stream_out = ssh2_fetch_stream($output2, SSH2_STREAM_STDIO);
-//                echo stream_get_contents($stream_out);
-//
-//                $output3 = ssh2_exec($connection, '^[');
-//                stream_set_blocking($output3, true);
-//                $stream_out = ssh2_fetch_stream($output3, SSH2_STREAM_STDIO);
-//                echo stream_get_contents($stream_out);
+                $streamOut = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO);
+                $streamContents = stream_get_contents($streamOut);
 
-//                $commands = [ '/storage/espa-sdr/bin/configure', '^[[21~' ];
-//                ssh2_auth_password( $connection, 'username', 'password' );
-//                $output = [];
-//                foreach ($commands as $cmd) {
-//                    $stream = ssh2_exec( $connection, $cmd );
-//                    stream_set_blocking( $stream, true );
-//                    $stream_out = ssh2_fetch_stream( $stream, SSH2_STREAM_STDIO );
-//                    $output[] = stream_get_contents($stream_out);
-//                }
+                //Disconnect in case of errors.
+                if (strpos($streamContents, 'ERROR') !== false) {
 
-                fclose($stream);
+                    echo 'FAILED: ' . $streamContents;
+                    fclose($stream);
+                    exit();
+
+                } else {
+                    echo 'SUCCESS: ' . $streamContents;
+
+                    //When successful, wait 20 seconds to let the MC generate the config files,
+                    sleep(20);
+
+                    //And after that, execute commands on the MC to reset the daemon.
+                    $stream = ssh2_exec ( $connection , "/storage/espa-sdr/bin/run-espa restart");
+                    $stream = ssh2_exec ( $connection , "/storage/espa-sdr/bin/run-sdr restart");
+
+                    fclose($stream);
+                }
 
                 //throw all errors and send to log
             } catch (Exception $e) {
@@ -113,7 +106,7 @@ class SshController extends Controller
         } else {
             die('Public Key Authentication Failed');
         }
-        return $f;
+        return;
     }
 
 }
