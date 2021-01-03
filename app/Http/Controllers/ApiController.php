@@ -24,15 +24,6 @@ class ApiController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Client\PendingRequest
      */
-
-//    public function index()
-//    {
-//        $configurations = Configuration::all()->pluck('link', 'id');
-//        $response = ApiHelpers::apiResponse(false, 200, '', $configurations);
-//
-//        return response()->json($response, 200);
-//    }
-
     /**
      * Handler for the incoming request from the Configuration Server.
      *
@@ -157,32 +148,3 @@ class ApiController extends Controller
 
     }
 }
-
-////    public function index()
-////    {
-////        $configurations = $this->authenticate()
-////            ->get("https://configuration.picasse.io/devices/espasdr?subTree=true")
-////            ->json();
-////
-////        dump($configurations);
-////
-////        return view('api.index', ['configurations' => $configurations]);
-////    }
-////
-////    public function show($id)
-////    {
-////        $json = $this->authenticate()->get('https://configuration.picasse.io/Identifier/Configuration?route=espasdr&identifier=' . $id . '&content=true')->json();
-////
-////        $data = collect($json)->map(function ($value) {
-////            if (is_array($value)) {
-////                return collect($value)->filter()->toArray();
-////            }
-////
-////            return $value;
-////        })->filter()->toArray();
-////
-////        $result = ArrayToXml::convert($data, 'config', true, 'UTF-8');
-////
-////        return response($result)->header('Content-Type', 'text/xml');
-////    }
-//}

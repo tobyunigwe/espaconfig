@@ -21,11 +21,6 @@ use App\Http\Controllers\Admin\ConfigurationsController;
 
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/configurations', [App\Http\Controllers\ConfigurationController::class, 'index'])->name('configurations');
-
-
 //Ssh Routes
 Route::get('/ssh2', [SshController::class, 'connection'])->name('ssh2');
 Route::get('/deployment', [SshController::class, 'index'])->name('deployment');
